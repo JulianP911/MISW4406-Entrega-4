@@ -1,16 +1,16 @@
-from saludTech.seedwork.aplicacion.servicios import Servicio
-from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
-from saludTech.modulos.gestor_archivos.infraestructura.repositorios import (
+from validadorAnonimizador.seedwork.aplicacion.servicios import Servicio
+from validadorAnonimizador.modulos.gestor_archivos.dominio.entidades import ImagenMedica
+from validadorAnonimizador.modulos.gestor_archivos.infraestructura.repositorios import (
     RepositorioImagenMedica,
 )
-from saludTech.modulos.gestor_archivos.dominio.fabricas import (
+from validadorAnonimizador.modulos.gestor_archivos.dominio.fabricas import (
     FabricaImagenMedica,
 )
-from saludTech.modulos.gestor_archivos.infraestructura.fabricas import (
+from validadorAnonimizador.modulos.gestor_archivos.infraestructura.fabricas import (
     FabricaRepositorio,
 )
 
-from saludTech.seedwork.infraestructura.uow import UnidadTrabajoPuerto as uow
+from validadorAnonimizador.seedwork.infraestructura.uow import UnidadTrabajoPuerto as uow
 
 from .dto import ImagenMedicaDTO
 from .mapeadores import MapeadorImagenMedica

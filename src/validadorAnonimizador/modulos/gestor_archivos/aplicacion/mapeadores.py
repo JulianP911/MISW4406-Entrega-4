@@ -1,7 +1,7 @@
-from saludTech.seedwork.aplicacion.dto import Mapeador as AppMap
-from saludTech.seedwork.dominio.repositorios import Mapeador as RepMap
-from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
-from saludTech.modulos.gestor_archivos.dominio.objeto_valor import Metadata
+from validadorAnonimizador.seedwork.aplicacion.dto import Mapeador as AppMap
+from validadorAnonimizador.seedwork.dominio.repositorios import Mapeador as RepMap
+from validadorAnonimizador.modulos.gestor_archivos.dominio.entidades import ImagenMedica
+from validadorAnonimizador.modulos.gestor_archivos.dominio.objeto_valor import Metadata
 from .dto import MetadataDTO, ImagenMedicaDTO
 
 

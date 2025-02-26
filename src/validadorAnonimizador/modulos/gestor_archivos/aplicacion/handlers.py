@@ -1,5 +1,5 @@
-from saludTech.seedwork.aplicacion.handlers import Handler
-from saludTech.modulos.gestor_archivos.infraestructura.despachadores import Despachador
+from validadorAnonimizador.seedwork.aplicacion.handlers import Handler
+from validadorAnonimizador.modulos.gestor_archivos.infraestructura.despachadores import Despachador
 
 
 class HandlerImagenMedicaIntegracion(Handler):

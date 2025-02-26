@@ -1,11 +1,11 @@
 import pulsar
 from pulsar.schema import AvroSchema
 
-from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.comandos import (
+from validadorAnonimizador.modulos.gestor_archivos.infraestructura.schemas.v1.comandos import (
     ComandoAnonimizarImagen,
     ComandoAnonimizarImagenPayload,
 )
-from saludTech.seedwork.infraestructura import utils
+from validadorAnonimizador.seedwork.infraestructura import utils
 
 import datetime
 

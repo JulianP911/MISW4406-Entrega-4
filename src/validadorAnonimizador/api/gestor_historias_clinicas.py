@@ -2,10 +2,10 @@ from flask import redirect, render_template, request, session, url_for
 from flask import Response
 import json
 
-from saludTech.modulos.gestor_archivos.aplicacion.servicios import ServicioImagenMedica
-import saludTech.seedwork.presentacion.api as api
-from saludTech.seedwork.dominio.excepciones import ExcepcionDominio
-from saludTech.modulos.gestor_archivos.aplicacion.mapeadores import (
+from validadorAnonimizador.modulos.gestor_archivos.aplicacion.servicios import ServicioImagenMedica
+import validadorAnonimizador.seedwork.presentacion.api as api
+from validadorAnonimizador.seedwork.dominio.excepciones import ExcepcionDominio
+from validadorAnonimizador.modulos.gestor_archivos.aplicacion.mapeadores import (
     MapeadorImagenMedicaDTOJson,
 )
 

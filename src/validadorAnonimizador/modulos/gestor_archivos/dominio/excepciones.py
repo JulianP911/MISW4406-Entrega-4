@@ -5,7 +5,7 @@ al dominio de vuelos
 
 """
 
-from saludTech.seedwork.dominio.excepciones import ExcepcionFabrica
+from validadorAnonimizador.seedwork.dominio.excepciones import ExcepcionFabrica
 
 
 class TipoObjetoNoExisteEnDominioVuelosExcepcion(ExcepcionFabrica):

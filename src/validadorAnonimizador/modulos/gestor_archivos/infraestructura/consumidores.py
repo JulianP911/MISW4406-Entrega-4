@@ -4,10 +4,10 @@ import logging
 import traceback
 
 
-from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.eventos import (
+from validadorAnonimizador.modulos.gestor_archivos.infraestructura.schemas.v1.eventos import (
     EventoImagenCargada,
 )
-from saludTech.seedwork.infraestructura import utils
+from validadorAnonimizador.seedwork.infraestructura import utils
 
 
 def suscribirse_a_eventos():
@@ -16,7 +16,7 @@ def suscribirse_a_eventos():
         cliente = Client(f"pulsar://{utils.broker_host()}:6650")
         consumidor = cliente.subscribe(
             "eventos-anonimizar-imagen",
-            subscription_name="saludTech-sub-eventos",
+            subscription_name="validadorAnonimizador-sub-eventos",
             schema=AvroSchema(EventoImagenCargada),
         )
 
@@ -38,7 +38,7 @@ def suscribirse_a_comandos():
         cliente = Client(f"pulsar://{utils.broker_host()}:6650")
         consumidor = cliente.subscribe(
             "comandos-anonimizar-imagen",
-            subscription_name="saludTech-sub-comandos",
+            subscription_name="validadorAnonimizador-sub-comandos",
             schema=AvroSchema(EventoImagenCargada),
         )
 

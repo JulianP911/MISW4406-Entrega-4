@@ -1,8 +1,8 @@
 from .entidades import ImagenMedica
 from .excepciones import TipoObjetoNoExisteEnDominioVuelosExcepcion
-from saludTech.seedwork.dominio.repositorios import Mapeador, Repositorio
-from saludTech.seedwork.dominio.fabricas import Fabrica
-from saludTech.seedwork.dominio.entidades import Entidad
+from validadorAnonimizador.seedwork.dominio.repositorios import Mapeador, Repositorio
+from validadorAnonimizador.seedwork.dominio.fabricas import Fabrica
+from validadorAnonimizador.seedwork.dominio.entidades import Entidad
 from dataclasses import dataclass
 
 

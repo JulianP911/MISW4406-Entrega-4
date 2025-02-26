@@ -1,13 +1,13 @@
-# from saludTech.seedwork.aplicacion.comandos import Comando
-# from saludTech.modulos.gestor_archivos.aplicacion.dto import ItinerarioDTO, ReservaDTO
+# from validadorAnonimizador.seedwork.aplicacion.comandos import Comando
+# from validadorAnonimizador.modulos.gestor_archivos.aplicacion.dto import ItinerarioDTO, ReservaDTO
 # from .base import CrearReservaBaseHandler
 # from dataclasses import dataclass, field
-# from saludTech.seedwork.aplicacion.comandos import ejecutar_commando as comando
+# from validadorAnonimizador.seedwork.aplicacion.comandos import ejecutar_commando as comando
 
-# from saludTech.modulos.gestor_archivos.dominio.entidades import Reserva
-# from saludTech.seedwork.infraestructura.uow import UnidadTrabajoPuerto
-# from saludTech.modulos.gestor_archivos.aplicacion.mapeadores import MapeadorReserva
-# from saludTech.modulos.gestor_archivos.infraestructura.repositorios import (
+# from validadorAnonimizador.modulos.gestor_archivos.dominio.entidades import Reserva
+# from validadorAnonimizador.seedwork.infraestructura.uow import UnidadTrabajoPuerto
+# from validadorAnonimizador.modulos.gestor_archivos.aplicacion.mapeadores import MapeadorReserva
+# from validadorAnonimizador.modulos.gestor_archivos.infraestructura.repositorios import (
 #     RepositorioReservas,
 # )
 

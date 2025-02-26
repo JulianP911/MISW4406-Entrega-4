@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
-from saludTech.seedwork.dominio.fabricas import Fabrica
-from saludTech.seedwork.dominio.repositorios import Repositorio, EventPayload
-from saludTech.modulos.gestor_archivos.dominio.repositorios import (
+from validadorAnonimizador.seedwork.dominio.fabricas import Fabrica
+from validadorAnonimizador.seedwork.dominio.repositorios import Repositorio, EventPayload
+from validadorAnonimizador.modulos.gestor_archivos.dominio.repositorios import (
     RepositorioImagenMedica,
 )
 from .repositorios import RepositorioImageneMedicaSQLite

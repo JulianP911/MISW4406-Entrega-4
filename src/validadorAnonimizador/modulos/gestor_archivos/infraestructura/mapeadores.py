@@ -1,5 +1,5 @@
-from saludTech.seedwork.dominio.repositorios import Mapeador
-from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
+from validadorAnonimizador.seedwork.dominio.repositorios import Mapeador
+from validadorAnonimizador.modulos.gestor_archivos.dominio.entidades import ImagenMedica
 from uuid import UUID
 from .despachadores import unix_time_millis
 from .dto import ImagenMedica as ImagenMedicaDTO

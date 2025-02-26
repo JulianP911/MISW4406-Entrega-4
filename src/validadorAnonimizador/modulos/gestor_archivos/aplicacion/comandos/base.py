@@ -1,8 +1,8 @@
-# from saludTech.seedwork.aplicacion.queries import ComandoHandler
-# from saludTech.modulos.gestor_archivos.infraestructura.fabricas import (
+# from validadorAnonimizador.seedwork.aplicacion.queries import ComandoHandler
+# from validadorAnonimizador.modulos.gestor_archivos.infraestructura.fabricas import (
 #     FabricaRepositorio,
 # )
-# from saludTech.modulos.gestor_archivos.dominio.fabricas import FabricaImagenMedica
+# from validadorAnonimizador.modulos.gestor_archivos.dominio.fabricas import FabricaImagenMedica
 
 
 # class CrearImagenMedicaBaseHandler(ComandoHandler):

@@ -1,4 +1,4 @@
-from saludTech.config.db import db
+from validadorAnonimizador.config.db import db
 from sqlalchemy.dialects.postgresql import UUID
 
 import uuid

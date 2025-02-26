@@ -1,5 +1,5 @@
 from abc import ABC
-from saludTech.seedwork.dominio.repositorios import Repositorio
+from validadorAnonimizador.seedwork.dominio.repositorios import Repositorio
 
 
 class RepositorioImagenMedica(Repositorio, ABC): ...

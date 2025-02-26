@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import uuid
 
-import saludTech.modulos.gestor_archivos.dominio.objeto_valor as ov
-from saludTech.seedwork.dominio.entidades import AgregacionRaiz
+import validadorAnonimizador.modulos.gestor_archivos.dominio.objeto_valor as ov
+from validadorAnonimizador.seedwork.dominio.entidades import AgregacionRaiz
 from .eventos import ArchivoPublicado
 
 

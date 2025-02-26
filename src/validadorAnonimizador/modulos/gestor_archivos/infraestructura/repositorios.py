@@ -1,9 +1,9 @@
-from saludTech.config.db import db
-from saludTech.modulos.gestor_archivos.dominio.repositorios import (
+from validadorAnonimizador.config.db import db
+from validadorAnonimizador.modulos.gestor_archivos.dominio.repositorios import (
     RepositorioImagenMedica,
 )
-from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
-from saludTech.modulos.gestor_archivos.dominio.fabricas import FabricaImagenMedica
+from validadorAnonimizador.modulos.gestor_archivos.dominio.entidades import ImagenMedica
+from validadorAnonimizador.modulos.gestor_archivos.dominio.fabricas import FabricaImagenMedica
 from .dto import ImagenMedica as ImagenMedicaDTO
 from .mapeadores import MapeadorImagenMedica
 from uuid import UUID

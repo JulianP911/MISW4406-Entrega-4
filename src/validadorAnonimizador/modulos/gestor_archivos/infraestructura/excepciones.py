@@ -1,4 +1,4 @@
-from saludTech.seedwork.dominio.excepciones import ExcepcionFabrica
+from validadorAnonimizador.seedwork.dominio.excepciones import ExcepcionFabrica
 
 
 class NoExisteImplementacionParaTipoFabricaExcepcion(ExcepcionFabrica):

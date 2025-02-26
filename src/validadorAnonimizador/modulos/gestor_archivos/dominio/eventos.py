@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from saludTech.seedwork.dominio.eventos import EventoDominio
+from validadorAnonimizador.seedwork.dominio.eventos import EventoDominio
 import uuid
 
 

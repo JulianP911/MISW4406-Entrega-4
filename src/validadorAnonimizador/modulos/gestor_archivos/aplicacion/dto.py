@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from saludTech.seedwork.aplicacion.dto import DTO
+from validadorAnonimizador.seedwork.aplicacion.dto import DTO
 
 
 @dataclass(frozen=True)
