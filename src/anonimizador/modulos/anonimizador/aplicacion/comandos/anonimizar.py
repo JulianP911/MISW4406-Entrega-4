@@ -1,43 +1,39 @@
 from anonimizador.seedwork.aplicacion.comandos import Comando
-from anonimizador.modulos.vuelos.aplicacion.dto import ItinerarioDTO, ReservaDTO
-from .base import CrearReservaBaseHandler
+from anonimizador.modulos.anonimizador.aplicacion.dto import ImagenMedicaDTO
+from .base import CrearImagenMedicaBaseHandler
 from dataclasses import dataclass, field
 from anonimizador.seedwork.aplicacion.comandos import ejecutar_commando as comando
 
-from anonimizador.modulos.vuelos.dominio.entidades import Reserva
+from anonimizador.modulos.anonimizador.dominio.entidades import ImagenMedica
 from anonimizador.seedwork.infraestructura.uow import UnidadTrabajoPuerto
-from anonimizador.modulos.vuelos.aplicacion.mapeadores import MapeadorReserva
-from anonimizador.modulos.vuelos.infraestructura.repositorios import RepositorioReservas, RepositorioEventosReservas
-# todo
+from anonimizador.modulos.anonimizador.aplicacion.mapeadores import MapeadorImagenMedica
+from anonimizador.modulos.anonimizador.infraestructura.repositorios import RepositorioImageneMedicaSQLite
+
 @dataclass
-class CrearReserva(Comando):
-    fecha_creacion: str
-    fecha_actualizacion: str
+class CrearImagenMedica(Comando):
     id: str
-    itinerarios: list[ItinerarioDTO]
+    url: str
+    id_paciente: str
 
-
-class CrearReservaHandler(CrearReservaBaseHandler):
+class CrearImagenMedicaHandler(CrearImagenMedicaBaseHandler):
     
-    def handle(self, comando: CrearReserva):
-        reserva_dto = ReservaDTO(
-                fecha_actualizacion=comando.fecha_actualizacion
-            ,   fecha_creacion=comando.fecha_creacion
-            ,   id=comando.id
-            ,   itinerarios=comando.itinerarios)
+    def handle(self, comando: CrearImagenMedica):
+        imagen_medica_dto = ImagenMedicaDTO(
+                id=comando.id
+            ,   id_paciente=comando.id_paciente
+            ,   url=comando.url)
 
-        reserva: Reserva = self.fabrica_vuelos.crear_objeto(reserva_dto, MapeadorReserva())
-        reserva.crear_reserva(reserva)
+        imagen_medica: ImagenMedica = self.fabrica_imagen_medica.crear_objeto(imagen_medica_dto, MapeadorImagenMedica())
+        imagen_medica.crear_imagen_medica(imagen_medica)
 
-        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioReservas)
-        repositorio_eventos = self.fabrica_repositorio.crear_objeto(RepositorioEventosReservas)
+        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImageneMedicaSQLite)
 
-        UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, reserva, repositorio_eventos_func=repositorio_eventos.agregar)
+        UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, imagen_medica)
         UnidadTrabajoPuerto.commit()
 
 
-@comando.register(CrearReserva)
-def ejecutar_comando_crear_reserva(comando: CrearReserva):
-    handler = CrearReservaHandler()
+@comando.register(CrearImagenMedica)
+def ejecutar_comando_crear_imagen_medica(comando: CrearImagenMedica):
+    handler = CrearImagenMedicaHandler()
     handler.handle(comando)
     
