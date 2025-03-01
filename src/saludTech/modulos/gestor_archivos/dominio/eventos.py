@@ -7,3 +7,4 @@ import uuid
 class ArchivoPublicado(EventoDominio):
     id: str = None
     url: str = None
+    id_paciente: str = None

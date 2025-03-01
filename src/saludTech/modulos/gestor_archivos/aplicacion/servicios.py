@@ -32,7 +32,7 @@ class ServicioImagenMedica(Servicio):
     def fabrica_imagenes_medicas(self):
         return self._fabrica_imagen_medica
 
-    def crear_imagen_medica(self, imagen_dto: ImagenMedicaDTO) -> ImagenMedicaDTO:
+    def crear_imagen_medica(self, imagen_dto: ImagenMedicaDTO, id_paciente:str) -> ImagenMedicaDTO:
 
         print("===========imagen_dto===========")
         print(imagen_dto)
@@ -47,12 +47,12 @@ class ServicioImagenMedica(Servicio):
         print(imagen_medica)
         print("===========imagen_medica===========")
 
-        imagen_medica.crear_imagen_medica(imagen_medica)
+        imagen_medica.crear_imagen_medica(imagen_medica, id_paciente)
 
         repositorio = self.fabrica_repositorio.crear_objeto(
             RepositorioImagenMedica.__class__
         )
-        # uow.clean()  # TODO Eliminar cuando funcione todo
+        uow.clean()  # TODO Eliminar cuando funcione todo
         uow.registrar_batch(repositorio.agregar, imagen_medica)
         uow.savepoint()
         uow.commit()
