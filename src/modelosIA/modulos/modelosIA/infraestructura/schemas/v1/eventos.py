@@ -5,7 +5,7 @@ from saludTech.seedwork.infraestructura.schema.v1.eventos import EventoIntegraci
 class DataframeGuardadoPayload(Record):
     id = String()
     id_paciente = String()
-    data = Dict()
+    dataframe = String()
 
 
 class EventoDataframeGuardado(EventoIntegracion):

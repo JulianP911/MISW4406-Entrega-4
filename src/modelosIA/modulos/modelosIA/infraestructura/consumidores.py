@@ -4,7 +4,7 @@ import logging
 import traceback
 
 
-from modelosIA.modulos.infraestructura.schemas.v1.eventos import (
+from modelosIA.modulos.modelosIA.infraestructura.schemas.v1.eventos import (
     EventoDataframeGuardado,
 )
 from saludTech.seedwork.infraestructura import utils

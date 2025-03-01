@@ -6,7 +6,7 @@ from modelosIA.seedwork.infraestructura.schema.v1.comandos import ComandoIntegra
 class ComandoGuardarDataframesPayload(ComandoIntegracion):
     id = String()
     url = String()
-    data = Dict()
+    dataframe = String()
 
 
 class ComandoGuardarDataframes(ComandoIntegracion):

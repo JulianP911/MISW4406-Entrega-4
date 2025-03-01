@@ -16,7 +16,7 @@ class CrearImagenMedica(Comando):
     id_paciente: str
 
 class CrearImagenMedicaHandler(CrearImagenMedicaBaseHandler):
-    
+
     def handle(self, comando: CrearImagenMedica):
         imagen_medica_dto = ImagenMedicaDTO(
                 id=comando.id
@@ -36,4 +36,3 @@ class CrearImagenMedicaHandler(CrearImagenMedicaBaseHandler):
 def ejecutar_comando_crear_imagen_medica(comando: CrearImagenMedica):
     handler = CrearImagenMedicaHandler()
     handler.handle(comando)
-    

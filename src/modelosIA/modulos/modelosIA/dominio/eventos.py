@@ -7,3 +7,4 @@ import uuid
 class ImagenAnonimizadaValidada(EventoDominio):
     id: str = None
     url: str = None
+    valida: bool = None

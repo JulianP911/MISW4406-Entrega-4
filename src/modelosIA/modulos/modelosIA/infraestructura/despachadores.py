@@ -2,7 +2,7 @@
 import pulsar
 from pulsar.schema import AvroSchema
 
-from modelosIA.modulos.infraestructura.schemas.v1.comandos import (
+from modelosIA.modulos.modelosIA.infraestructura.schemas.v1.comandos import (
     ComandoGuardarDataframes,
     ComandoGuardarDataframesPayload,
 )

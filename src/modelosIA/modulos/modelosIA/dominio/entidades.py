@@ -7,15 +7,13 @@ from .eventos import ImagenAnonimizada
 from datetime import datetime
 
 @dataclass
-class ImagenMedica(AgregacionRaiz):
+class Dataframe(AgregacionRaiz):
     id: uuid.UUID = field(hash=True, default=None)
     url: str = field(default=None)
-    fecha_recepcion: int = field(default_factory=lambda: int(time.time()))
-    accion: str = field(default=None)
+    dataframe: str = field(default=None)
 
-    def crear_imagen_medica(self, imagenMedica: ImagenMedica, accion: str):
-        self.id = imagenMedica.id
-        self.url = imagenMedica.url
-        self.fecha_recepcion = datetime.now().timestamp()
-        self.accion = accion
+    def crear_dataframe(self, dataframe: Dataframe, accion: str):
+        self.id = dataframe.id
+        self.url = dataframe.url
+        self.dataframe = dataframe.dataframe
         self.agregar_evento(ImagenAnonimizada(id=self.id, url=self.url))
