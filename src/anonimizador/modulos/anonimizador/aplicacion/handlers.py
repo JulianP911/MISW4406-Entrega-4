@@ -9,5 +9,6 @@ class HandlerAnonimizadorIntegracion(Handler):
         print("===========HANDLER ANONIMIZADOR INTEGRACION===========")
         print(comando)
         print("===========HANDLER ANONIMIZADOR INTEGRACION===========")
+
         despachador = Despachador()
         despachador.publicar_comando(comando, "comandos-validar-anonimizado")

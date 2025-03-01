@@ -46,11 +46,13 @@ class ServicioImagenMedica(Servicio):
         print(imagen_medica)
         print("===========imagen_medica===========")
 
-        imagen_medica.crear_imagen_medica(imagen_medica)
+        imagen_medica.crear_imagen_medica(imagen_medica,"ANONIMIZAR")
 
         repositorio = self.fabrica_repositorio.crear_objeto(
             RepositorioImagenMedica.__class__
         )
+        print("===========ANTES DE MORIR===========")
+        print(imagen_medica)
         print("===========ANTES DE MORIR===========")
         uow.clean()  # TODO Eliminar cuando funcione todo
         uow.registrar_batch(repositorio.agregar, imagen_medica)

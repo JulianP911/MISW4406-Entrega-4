@@ -7,20 +7,20 @@ from saludTech_anonimizador.modulos.anonimizador.aplicacion.mapeadores import (
     MapeadorImagenMedicaDTOJson,
 )
 
-from saludTech_anonimizador.modulos.anonimizador.infraestructura.schemas.v1.eventos import (
-    EventoImagenCargada,
+from saludTech_anonimizador.modulos.anonimizador.infraestructura.schemas.v1.comandos import (
+    ComandoValidarAnonimizado
 )
 from saludTech_anonimizador.seedwork.infraestructura import utils
 
 
-def suscribirse_a_eventos():
+def suscribirse_a_eventos(app):
     cliente = None
     try:
         cliente = Client(f"pulsar://{utils.broker_host()}:6650")
         consumidor = cliente.subscribe(
             "comandos-validar-anonimizado",
             subscription_name="saludTech_anonimizador-sub-comandos-validar",
-            schema=AvroSchema(EventoImagenCargada),
+            schema=AvroSchema(ComandoValidarAnonimizado),
         )
 
         while True:
@@ -35,13 +35,13 @@ def suscribirse_a_eventos():
             cliente.close()
 
 
-def suscribirse_a_comandos():
+def suscribirse_a_comandos(app):
     cliente = None
     try:
         cliente = Client(f"pulsar://{utils.broker_host()}:6650")
         consumidor = cliente.subscribe(
-            "comandos-anonimizar-imagen",
-            subscription_name="saludTech_anonimizador-sub-comandos",
+            "comandos-validar-anonimizado",
+            subscription_name="saludTech_comandos-validar-anonimizado",
             schema=AvroSchema(EventoImagenCargada),
         )
 
@@ -49,25 +49,26 @@ def suscribirse_a_comandos():
             mensaje = consumidor.receive()
             print(f"Comando recibido: {mensaje.value().data}")
             consumidor.acknowledge(mensaje)
-            imagen_medica_dict = mensaje.value().data.__dict__
-            print("===========dict===========")
-            print(imagen_medica_dict)
-            print("===========dict===========")
+            with app.test_request_context():
+                imagen_medica_dict = mensaje.value().data.__dict__
+                print("===========dict===========")
+                print(imagen_medica_dict)
+                print("===========dict===========")
 
-            map_imagen_medica = MapeadorImagenMedicaDTOJson()
+                map_imagen_medica = MapeadorImagenMedicaDTOJson()
 
-            imagen_medica_dto = map_imagen_medica.externo_a_dto(imagen_medica_dict)
+                imagen_medica_dto = map_imagen_medica.externo_a_dto(imagen_medica_dict)
 
-            print("===========map_imagen_medica===========")
-            print(imagen_medica_dto)
-            print("===========map_imagen_medica===========")
+                print("===========map_imagen_medica===========")
+                print(imagen_medica_dto)
+                print("===========map_imagen_medica===========")
 
-            servicio_imagen_medica = ServicioImagenMedica()
-            dto_final = servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto)
+                servicio_imagen_medica = ServicioImagenMedica()
+                dto_final = servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto)
 
-            print("===========dto_final===========")
-            print(dto_final)
-            print("===========dto_final===========")
+                print("===========dto_final===========")
+                print(dto_final)
+                print("===========dto_final===========")
     except:
         logging.error("ERROR: Suscribiendose al tópico de comandos!")
         traceback.print_exc()

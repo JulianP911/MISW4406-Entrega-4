@@ -10,3 +10,4 @@ class ImagenCargadaPayload(Record):
 
 class EventoImagenCargada(EventoIntegracion):
     data = ImagenCargadaPayload()
+

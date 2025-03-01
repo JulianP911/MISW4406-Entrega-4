@@ -6,4 +6,4 @@ from anonimizador.seedwork.dominio.eventos import EventoDominio
 class ImagenAnonimizada(EventoDominio):
     id: str = None
     url: str = None
-    id_paciente: str = None
+    token_paciente: str = None

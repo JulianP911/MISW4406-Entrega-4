@@ -12,4 +12,4 @@ class ImagenMedica(db.Model):
     )
     url = db.Column(db.String(255), nullable=False)
     fecha_recepcion = db.Column(db.String(255), nullable=False)
-    origen = db.Column(db.String(255), nullable=False)
+    accion = db.Column(db.String(255), nullable=False)

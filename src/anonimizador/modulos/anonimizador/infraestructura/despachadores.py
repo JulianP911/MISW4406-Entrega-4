@@ -36,6 +36,10 @@ class Despachador:
         cliente.close()
 
     def publicar_comando(self, comando, topico):
+
+        print("===========COMANDO===========")
+        print(comando)
+        print("===========COMANDO===========")
         payload = ComandoValidarAnonimizadoPayload(id=comando.id, url=comando.url, token_paciente=comando.token_paciente)
         comando_integracion = ComandoValidarAnonimizado(data=payload)
 

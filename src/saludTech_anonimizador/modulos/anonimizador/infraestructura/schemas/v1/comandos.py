@@ -11,3 +11,12 @@ class ComandoAnonimizarImagenPayload(ComandoIntegracion):
 
 class ComandoAnonimizarImagen(ComandoIntegracion):
     data = ComandoAnonimizarImagenPayload()
+
+class ComandoValidarAnonimizadoPayload(ComandoIntegracion):
+    id = String()
+    token_paciente = String()
+    url = String()
+
+
+class ComandoValidarAnonimizado(ComandoIntegracion):
+    data = ComandoValidarAnonimizadoPayload()

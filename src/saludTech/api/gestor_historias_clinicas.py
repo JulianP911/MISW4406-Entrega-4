@@ -29,7 +29,7 @@ def crear_imagen_medica():
         print("===========map_imagen_medica===========")
 
         servicio_imagen_medica = ServicioImagenMedica()
-        dto_final = servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto)
+        dto_final = servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto, imagen_medica_dict["id_paciente"])
 
         print("===========dto_final===========")
         print(dto_final)

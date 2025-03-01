@@ -14,6 +14,8 @@ class MapeadorImagenMedica(Mapeador):
         imagen_medica_dto = ImagenMedicaDTO()
         imagen_medica_dto.id = entidad.id
         imagen_medica_dto.url = entidad.url
+        imagen_medica_dto.fecha_recepcion = entidad.fecha_recepcion
+        imagen_medica_dto.accion = entidad.accion
 
         return imagen_medica_dto
 

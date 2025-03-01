@@ -19,6 +19,7 @@ class RepositorioImageneMedicaSQLite(RepositorioImagenMedica):
         return self._fabrica_imagen_medica
 
     def agregar(self, entity: ImagenMedica):
+        print(entity)
         imagen_medica_dto = self.fabrica_imagen_medica(entity, MapeadorImagenMedica())
         db.session.add(imagen_medica_dto)
 
