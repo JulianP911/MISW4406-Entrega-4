@@ -1,12 +1,12 @@
 from anonimizador.seedwork.aplicacion.dto import Mapeador as AppMap
 from anonimizador.seedwork.dominio.repositorios import Mapeador as RepMap
 from anonimizador.modulos.anonimizador.dominio.entidades import ImagenMedica
-from anonimizador.modulos.anonimizador.dominio.objeto_valor import Metadata
 from .dto import ImagenMedicaDTO
 
 
 class MapeadorAnonimizadorDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> ImagenMedicaDTO:
+        #print("externo a dto: "+externo)
         imagen_medica_dto = ImagenMedicaDTO(
             url=externo["url"],
             id=externo["id"],
@@ -40,6 +40,5 @@ class MapeadorImagenMedica(RepMap):
     def dto_a_entidad(self, dto: ImagenMedicaDTO) -> ImagenMedica:
         return ImagenMedica(
             id=dto.id,
-            url=dto.url,
-            id_paciente=dto.id_paciente
+            url=dto.url
         )

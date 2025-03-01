@@ -2,7 +2,6 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import uuid
 
-import anonimizador.modulos.anonimizador.dominio.objeto_valor as ov
 from anonimizador.seedwork.dominio.entidades import AgregacionRaiz
 from .eventos import ImagenAnonimizada
 

@@ -10,7 +10,7 @@ class ComandoValidarAnonimizadoPayload(ComandoIntegracion):
 
 
 class ComandoValidarAnonimizado(ComandoIntegracion):
-    data = ComandoAnonimizarImagenPayload()
+    data = ComandoValidarAnonimizadoPayload()
 
 class ComandoAnonimizarImagenPayload(ComandoIntegracion):
     id = String()

@@ -1,5 +1,5 @@
 from .entidades import ImagenMedica
-from .excepciones import TipoObjetoNoExisteEnDominioVuelosExcepcion
+from .excepciones import NoEsPosibleAnonimizarExcepcion
 from anonimizador.seedwork.dominio.repositorios import Mapeador, Repositorio
 from anonimizador.seedwork.dominio.fabricas import Fabrica
 from anonimizador.seedwork.dominio.entidades import Entidad
@@ -24,7 +24,7 @@ class FabricaImagenMedica(Fabrica):
             fabrica_imagen_medica = _FabricaImagenMedica()
             return fabrica_imagen_medica.crear_objeto(obj, mapeador)
         else:
-            raise TipoObjetoNoExisteEnDominioVuelosExcepcion()
+            raise NoEsPosibleAnonimizarExcepcion()
 
     def __call__(self, obj: any, mapeador: Mapeador) -> any:
         return self.crear_objeto(obj, mapeador)
