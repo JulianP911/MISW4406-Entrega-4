@@ -9,8 +9,7 @@ class MapeadorAnonimizadorDTOJson(AppMap):
         #print("externo a dto: "+externo)
         imagen_medica_dto = ImagenMedicaDTO(
             url=externo["url"],
-            id=externo["id"],
-            id_paciente=externo["id_paciente"]
+            id=externo["id"]
         )
 
         return imagen_medica_dto
@@ -30,7 +29,6 @@ class MapeadorImagenMedica(RepMap):
         print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
         return ImagenMedicaDTO(
             entidad.id,
-            entidad.id_paciente,
             entidad.url
         )
 
