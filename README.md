@@ -16,7 +16,7 @@ El proyecto se encuentra estructurado en directorios, cada uno de los cuales alb
 
 Asimismo, cada microservicio emplementa las siguientes capas arquitectónicas, con el propósito de adherirse a los principios del **Diseño Guiado por el Dominio (DDD)**:
 
-- API
+- Api
 - Dominio
 - Infraestructura
 - Aplicación
