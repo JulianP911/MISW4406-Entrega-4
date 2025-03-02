@@ -106,3 +106,15 @@ A continuación, se describen el comando para ejecutar el microservicio **modelo
 ```
 
 **Importante:** Esta aplicación corre en el puerto 5003.
+
+Abrir postman y realizar una péticion de tipo POST a la url `localhost:5000/imagen_medica` y mandar el objeto para la ejecución correcta.
+   ```bash
+   {
+        "url": "www.testq.com",
+        "id_paciente": "{{$guid}}",
+        "metadata": {
+            "tipo": "test",
+            "formato": "test"
+        }
+    }
+   ```
