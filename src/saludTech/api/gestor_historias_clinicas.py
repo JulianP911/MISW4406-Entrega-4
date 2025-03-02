@@ -3,6 +3,7 @@ from flask import Response
 import json
 
 from saludTech.seedwork.aplicacion.comandos import ejecutar_commando
+from saludTech.seedwork.aplicacion.queries import ejecutar_query
 import saludTech.seedwork.presentacion.api as api
 from saludTech.seedwork.dominio.excepciones import ExcepcionDominio
 from saludTech.modulos.gestor_archivos.aplicacion.mapeadores import (
@@ -10,6 +11,10 @@ from saludTech.modulos.gestor_archivos.aplicacion.mapeadores import (
 )
 from saludTech.modulos.gestor_archivos.aplicacion.comandos.crear_imagen_medica import (
     CrearImagenMedica,
+)
+
+from saludTech.modulos.gestor_archivos.aplicacion.queries.obtener_imagenes_medicas import (
+    ObtenerImagenesMedicas,
 )
 
 bp = api.crear_blueprint("gestor_archivos", "/gestor_archivos")
@@ -41,3 +46,20 @@ def crear_imagen_medica():
         return Response(
             json.dumps(dict(error=str(e))), status=400, mimetype="application/json"
         )
+
+
+@bp.route("/imagen_medica", methods=("GET",))
+def dar_imagenes_medicas():
+    query_resultado = ejecutar_query(ObtenerImagenesMedicas())
+    map_imagen_medica = MapeadorImagenMedicaDTOJson()
+    resultado = []
+
+    for res in query_resultado.resultado:
+        resultado.append(map_imagen_medica.dto_a_externo(res))
+
+    res_dict = []
+    for res in resultado:
+        del res["metadata"]
+        res_dict.append(res)
+
+    return res_dict

@@ -75,9 +75,6 @@ class UnidadTrabajo(ABC):
             dispatcher.send(signal=f"{type(evento).__name__}Dominio", evento=evento)
 
     def _publicar_eventos_post_commit(self):
-        print("=========EVENTOS POST COMMIT==========")
-        print(self._obtener_eventos())
-        print("=========EVENTOS POST COMMIT==========")
         for evento in self._obtener_eventos():
             print(f"Publicando evento: {type(evento).__name__}")
             dispatcher.send(
@@ -125,6 +122,7 @@ def guardar_unidad_trabajo(uow: UnidadTrabajo):
         registrar_unidad_de_trabajo(pickle.dumps(uow))
     else:
         raise Exception("No hay unidad de trabajo")
+
 
 class UnidadTrabajoPuerto:
 

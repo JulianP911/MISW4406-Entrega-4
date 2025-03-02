@@ -23,7 +23,13 @@ class RepositorioImageneMedicaSQLite(RepositorioImagenMedica):
         db.session.add(imagen_medica_dto)
 
     def obtener_todos(self) -> list[ImagenMedica]:
-        pass
+        imagenes_medicas = db.session.query(ImagenMedicaDTO).all()
+        imagenes_medicas_dto = []
+        for imagen_medica in imagenes_medicas:
+            imagenes_medicas_dto.append(
+                self.fabrica_imagen_medica(imagen_medica, MapeadorImagenMedica())
+            )
+        return imagenes_medicas_dto
 
     def obtener_por_id(self, id: UUID) -> ImagenMedica:
         pass

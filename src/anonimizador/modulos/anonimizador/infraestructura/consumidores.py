@@ -5,7 +5,8 @@ import traceback
 import json
 
 from anonimizador.modulos.anonimizador.infraestructura.schemas.v1.comandos import (
-    ComandoAnonimizarImagen, ComandoValidarAnonimizado
+    ComandoAnonimizarImagen,
+    ComandoValidarAnonimizado,
 )
 from anonimizador.seedwork.infraestructura import utils
 from anonimizador.modulos.anonimizador.dominio.entidades import ImagenMedica
@@ -13,6 +14,7 @@ from anonimizador.modulos.anonimizador.aplicacion.servicios import ServicioImage
 from anonimizador.modulos.anonimizador.aplicacion.mapeadores import (
     MapeadorAnonimizadorDTOJson,
 )
+
 
 def suscribirse_a_eventos(app):
     cliente = None
@@ -24,13 +26,13 @@ def suscribirse_a_eventos(app):
             schema=AvroSchema(ComandoValidarAnonimizado),
         )
 
-        
     except Exception as e:
         print(e)
         logging.error("ERROR: Suscribiendose al tópico de comandos!")
         traceback.print_exc()
         if cliente:
             cliente.close()
+
 
 def suscribirse_a_comandos(app):
     cliente = None
@@ -47,19 +49,15 @@ def suscribirse_a_comandos(app):
             print(f"Comando recibido: {mensaje.value().data}")
             with app.test_request_context():
                 map_imagen_medica = MapeadorAnonimizadorDTOJson()
-                
-                imagen_medica_dto = map_imagen_medica.externo_a_dto(mensaje.value().data.__dict__)
 
-                print("===========map_imagen_medica===========")
-                print(imagen_medica_dto)
-                print("===========map_imagen_medica===========")
+                imagen_medica_dto = map_imagen_medica.externo_a_dto(
+                    mensaje.value().data.__dict__
+                )
 
                 servicio_imagen_medica = ServicioImagenMedica()
-                dto_final = servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto)
-
-                print("===========dto_final===========")
-                print(dto_final)
-                print("===========dto_final===========")
+                dto_final = servicio_imagen_medica.crear_imagen_medica(
+                    imagen_medica_dto
+                )
 
                 consumidor.acknowledge(mensaje)
     except Exception as e:

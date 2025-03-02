@@ -1,5 +1,7 @@
 from validador_anonimizador.seedwork.aplicacion.servicios import Servicio
-from validador_anonimizador.modulos.validador_anonimizador.dominio.entidades import ImagenMedica
+from validador_anonimizador.modulos.validador_anonimizador.dominio.entidades import (
+    ImagenMedica,
+)
 from validador_anonimizador.modulos.validador_anonimizador.infraestructura.repositorios import (
     RepositorioImagenMedica,
 )
@@ -10,7 +12,9 @@ from validador_anonimizador.modulos.validador_anonimizador.infraestructura.fabri
     FabricaRepositorio,
 )
 
-from validador_anonimizador.seedwork.infraestructura.uow import UnidadTrabajoPuerto as uow
+from validador_anonimizador.seedwork.infraestructura.uow import (
+    UnidadTrabajoPuerto as uow,
+)
 
 from .dto import ImagenMedicaDTO
 from .mapeadores import MapeadorImagenMedica
@@ -34,18 +38,10 @@ class ServicioImagenMedica(Servicio):
 
     def crear_imagen_medica(self, imagen_dto: ImagenMedicaDTO) -> ImagenMedicaDTO:
 
-        print("===========imagen_dto===========")
-        print(imagen_dto)
-        print("===========imagen_dto===========")
-
         imagen_medica: ImagenMedica = self.fabrica_imagenes_medicas.crear_objeto(
             imagen_dto,
             MapeadorImagenMedica(),
         )
-
-        print("===========imagen_medica===========")
-        print(imagen_medica)
-        print("===========imagen_medica===========")
 
         imagen_medica.crear_imagen_medica(imagen_medica)
 

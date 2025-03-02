@@ -26,8 +26,15 @@ class MapeadorImagenMedica(Mapeador):
         return imagen_medica_dto
 
     def dto_a_entidad(self, dto: ImagenMedicaDTO) -> ImagenMedica:
+
+        metadata_dto = dto.imagen_metadata
+
+        for metadata in metadata_dto:
+            print(metadata)
+            print(metadata.__dict__)
+
         return ImagenMedica(
-            id=UUID(dto["id"]),
-            url=dto["url"],
-            fecha_creacion=dto["fecha_creacion"],
+            id=UUID(dto.id),
+            url=dto.url,
+            metadata=MetadataDTO(tipo="", formato=""),
         )

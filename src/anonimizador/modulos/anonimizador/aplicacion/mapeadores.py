@@ -4,13 +4,11 @@ from anonimizador.modulos.anonimizador.dominio.entidades import ImagenMedica
 from .dto import ImagenMedicaDTO
 import time
 
+
 class MapeadorAnonimizadorDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> ImagenMedicaDTO:
-        #print("externo a dto: "+externo)
-        imagen_medica_dto = ImagenMedicaDTO(
-            url=externo["url"],
-            id=externo["id"]
-        )
+        # print("externo a dto: "+externo)
+        imagen_medica_dto = ImagenMedicaDTO(url=externo["url"], id=externo["id"])
 
         return imagen_medica_dto
 
@@ -24,17 +22,7 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedica.__class__
 
     def entidad_a_dto(self, entidad: ImagenMedica) -> ImagenMedicaDTO:
-        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
-        print(entidad)
-        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
-        return ImagenMedicaDTO(
-            entidad.id,
-            entidad.url
-        )
+        return ImagenMedicaDTO(entidad.id, entidad.url)
 
     def dto_a_entidad(self, dto: ImagenMedicaDTO) -> ImagenMedica:
-        return ImagenMedica(
-            id=dto.id,
-            url=dto.url,
-            fecha_recepcion=time.time()
-        )
+        return ImagenMedica(id=dto.id, url=dto.url, fecha_recepcion=time.time())

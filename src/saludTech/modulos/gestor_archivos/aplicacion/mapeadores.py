@@ -5,6 +5,7 @@ from saludTech.modulos.gestor_archivos.dominio.objeto_valor import Metadata
 from .dto import MetadataDTO, ImagenMedicaDTO
 import uuid
 
+
 class MapeadorImagenMedicaDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> ImagenMedicaDTO:
         imagen_medica_dto = ImagenMedicaDTO(
@@ -32,9 +33,6 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedica.__class__
 
     def entidad_a_dto(self, entidad: ImagenMedica) -> ImagenMedicaDTO:
-        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
-        print(entidad)
-        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
         fecha_creacion = None
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(self._FORMATO_FECHA)
 

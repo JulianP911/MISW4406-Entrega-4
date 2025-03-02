@@ -2,14 +2,15 @@ from pulsar import Client
 from pulsar.schema import AvroSchema
 import logging
 import traceback
-from validador_anonimizador.modulos.validador_anonimizador.aplicacion.servicios import ServicioImagenMedica
+from validador_anonimizador.modulos.validador_anonimizador.aplicacion.servicios import (
+    ServicioImagenMedica,
+)
 from validador_anonimizador.modulos.validador_anonimizador.aplicacion.mapeadores import (
     MapeadorImagenMedicaDTOJson,
 )
 
 from validador_anonimizador.modulos.validador_anonimizador.infraestructura.schemas.v1.comandos import (
     ComandoValidarAnonimizado,
-
 )
 
 from validador_anonimizador.seedwork.infraestructura import utils
@@ -53,24 +54,16 @@ def suscribirse_a_comandos(app):
             consumidor.acknowledge(mensaje)
             with app.test_request_context():
                 imagen_medica_dict = mensaje.value().data.__dict__
-                print("===========dict===========")
-                print(imagen_medica_dict)
-                print("===========dict===========")
 
                 map_imagen_medica = MapeadorImagenMedicaDTOJson()
 
                 imagen_medica_dto = map_imagen_medica.externo_a_dto(imagen_medica_dict)
 
-                print("===========map_imagen_medica===========")
-                print(imagen_medica_dto)
-                print("===========map_imagen_medica===========")
-
                 servicio_imagen_medica = ServicioImagenMedica()
-                dto_final = servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto)
+                dto_final = servicio_imagen_medica.crear_imagen_medica(
+                    imagen_medica_dto
+                )
 
-                print("===========dto_final===========")
-                print(dto_final)
-                print("===========dto_final===========")
     except:
         logging.error("ERROR: Suscribiendose al tópico de comandos!")
         traceback.print_exc()

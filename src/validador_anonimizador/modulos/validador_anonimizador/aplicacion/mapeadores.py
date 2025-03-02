@@ -1,7 +1,9 @@
 from validador_anonimizador.seedwork.aplicacion.dto import Mapeador as AppMap
 from validador_anonimizador.seedwork.dominio.repositorios import Mapeador as RepMap
-from validador_anonimizador.modulos.validador_anonimizador.dominio.entidades import ImagenMedica
-from .dto import  ImagenMedicaDTO
+from validador_anonimizador.modulos.validador_anonimizador.dominio.entidades import (
+    ImagenMedica,
+)
+from .dto import ImagenMedicaDTO
 
 
 class MapeadorImagenMedicaDTOJson(AppMap):
@@ -23,9 +25,6 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedica.__class__
 
     def entidad_a_dto(self, entidad: ImagenMedica) -> ImagenMedicaDTO:
-        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
-        print(entidad)
-        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
         fecha_creacion = None
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(self._FORMATO_FECHA)
 
