@@ -2,9 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import uuid
 import time
-from anonimizador.seedwork.dominio.entidades import AgregacionRaiz
-from .eventos import ImagenAnonimizada
-from datetime import datetime
+from modelosIA.seedwork.dominio.entidades import AgregacionRaiz
 
 @dataclass
 class Dataframe(AgregacionRaiz):
@@ -12,8 +10,8 @@ class Dataframe(AgregacionRaiz):
     url: str = field(default=None)
     dataframe: str = field(default=None)
 
-    def crear_dataframe(self, dataframe: Dataframe, accion: str):
+    def crear_dataframe(self, dataframe: Dataframe):
         self.id = dataframe.id
         self.url = dataframe.url
         self.dataframe = dataframe.dataframe
-        self.agregar_evento(ImagenAnonimizada(id=self.id, url=self.url))
+

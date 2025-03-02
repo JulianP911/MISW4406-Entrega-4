@@ -4,6 +4,8 @@ from pulsar.schema import AvroSchema
 from saludTech_anonimizador.modulos.anonimizador.infraestructura.schemas.v1.comandos import (
     ComandoAnonimizarImagen,
     ComandoAnonimizarImagenPayload,
+    ComandoGuardarDataframesPayload, 
+    ComandoGuardarDataframes
 )
 from saludTech_anonimizador.seedwork.infraestructura import utils
 
@@ -36,8 +38,8 @@ class Despachador:
         cliente.close()
 
     def publicar_comando(self, comando, topico):
-        payload = ComandoAnonimizarImagenPayload(id=comando.id, url=comando.url)
-        comando_integracion = ComandoAnonimizarImagen(data=payload)
+        payload = ComandoGuardarDataframesPayload(id=comando.id, url=comando.url)
+        comando_integracion = ComandoGuardarDataframes(data=payload)
 
         print("===========PAYLOAD===========")
         print(payload)
@@ -48,5 +50,5 @@ class Despachador:
         print("===========COMANDO INTEGRACION===========")
 
         self._publicar_mensaje(
-            comando_integracion, topico, AvroSchema(ComandoAnonimizarImagen)
+            comando_integracion, topico, AvroSchema(ComandoGuardarDataframes)
         )

@@ -26,7 +26,7 @@ def comenzar_consumidor(app):
     import anonimizador.modulos.anonimizador.infraestructura.consumidores as anonimizador
 
     # Suscripción a eventos
-    threading.Thread(target=anonimizador.suscribirse_a_eventos).start()
+    threading.Thread(target=anonimizador.suscribirse_a_eventos, args=[app]).start()
 
     # Suscripción a comandos
     threading.Thread(target=anonimizador.suscribirse_a_comandos, args=[app]).start()

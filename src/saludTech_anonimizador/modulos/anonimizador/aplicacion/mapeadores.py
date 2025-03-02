@@ -32,6 +32,7 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedicaDTO(
             entidad.id,
             entidad.url,
+            entidad.validated,
             fecha_actualizacion=fecha_actualizacion,
             fecha_creacion=fecha_creacion,
         )
@@ -40,4 +41,5 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedica(
             id=dto.id,
             url=dto.url,
+            validated=dto.validated,
         )

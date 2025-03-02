@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from modelosIA.seedwork.dominio.fabricas import Fabrica
 from modelosIA.seedwork.dominio.repositorios import Repositorio, EventPayload
-from .repositorios import RepositorioDataframe
+from .repositorios import RepositorioDataframe, RepositorioDataframeSQLite
 from .excepciones import ExcepcionFabrica
 from .schemas.v1.comandos import ComandoGuardarDataframesPayload
 
@@ -9,7 +9,7 @@ from .schemas.v1.comandos import ComandoGuardarDataframesPayload
 class FabricaRepositorio(Fabrica):
     def crear_objeto(self, obj: type, mapeador: any = None) -> Repositorio:
         if obj == RepositorioDataframe.__class__:
-            return RepositorioDataframe()
+            return RepositorioDataframeSQLite()
         else:
             raise ExcepcionFabrica()
 

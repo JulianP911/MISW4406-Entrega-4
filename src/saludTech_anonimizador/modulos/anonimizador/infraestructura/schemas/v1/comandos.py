@@ -20,3 +20,13 @@ class ComandoValidarAnonimizadoPayload(ComandoIntegracion):
 
 class ComandoValidarAnonimizado(ComandoIntegracion):
     data = ComandoValidarAnonimizadoPayload()
+
+
+
+class ComandoGuardarDataframesPayload(ComandoIntegracion):
+    id = String()
+    url = String()
+
+
+class ComandoGuardarDataframes(ComandoIntegracion):
+    data = ComandoGuardarDataframesPayload()

@@ -1,5 +1,5 @@
-from saludTech.config.db import db
-from saludTech.seedwork.infraestructura.uow import UnidadTrabajo, Batch
+from modelosIA.config.db import db
+from modelosIA.seedwork.infraestructura.uow import UnidadTrabajo, Batch
 
 
 class UnidadTrabajoSQLAlchemy(UnidadTrabajo):

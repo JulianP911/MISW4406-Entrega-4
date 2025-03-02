@@ -1,4 +1,4 @@
-from anonimizador.config.db import db
+from modelosIA.config.db import db
 from sqlalchemy.dialects.postgresql import UUID
 
 import uuid

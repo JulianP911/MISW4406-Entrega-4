@@ -8,8 +8,10 @@ from saludTech_anonimizador.modulos.anonimizador.aplicacion.mapeadores import (
 )
 
 from saludTech_anonimizador.modulos.anonimizador.infraestructura.schemas.v1.comandos import (
-    ComandoValidarAnonimizado
+    ComandoValidarAnonimizado,
+
 )
+
 from saludTech_anonimizador.seedwork.infraestructura import utils
 
 
@@ -18,8 +20,8 @@ def suscribirse_a_eventos(app):
     try:
         cliente = Client(f"pulsar://{utils.broker_host()}:6650")
         consumidor = cliente.subscribe(
-            "comandos-validar-anonimizado",
-            subscription_name="saludTech_anonimizador-sub-comandos-validar",
+            "eventos-validar-anonimizado",
+            subscription_name="saludTech_anonimizador-sub-eventos-validar",
             schema=AvroSchema(ComandoValidarAnonimizado),
         )
 
@@ -42,7 +44,7 @@ def suscribirse_a_comandos(app):
         consumidor = cliente.subscribe(
             "comandos-validar-anonimizado",
             subscription_name="saludTech_comandos-validar-anonimizado",
-            schema=AvroSchema(EventoImagenCargada),
+            schema=AvroSchema(ComandoValidarAnonimizado),
         )
 
         while True:

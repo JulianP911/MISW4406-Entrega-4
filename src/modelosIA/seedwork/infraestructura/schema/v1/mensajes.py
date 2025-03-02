@@ -1,7 +1,7 @@
 import uuid
 
 from pulsar.schema import *
-from saludTech.seedwork.infraestructura.utils import time_millis
+from modelosIA.seedwork.infraestructura.utils import time_millis
 
 
 class Mensaje(Record):

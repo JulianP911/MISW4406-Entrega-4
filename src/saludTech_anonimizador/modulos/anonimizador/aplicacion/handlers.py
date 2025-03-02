@@ -10,4 +10,4 @@ class HandlerImagenMedicaIntegracion(Handler):
         print(comando)
         print("===========HANDLER IMAGEN MEDICA INTEGRACION===========")
         despachador = Despachador()
-        despachador.publicar_comando(comando, "comandos-validar-anonimizado")
+        despachador.publicar_comando(comando, "comandos-ejecutar-modelosIA")

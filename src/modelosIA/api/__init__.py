@@ -8,11 +8,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 def registrar_handlers():
-    import anonimizador.modulos.anonimizador.aplicacion
+    import modelosIA.modulos.modelosIA.aplicacion
 
 
 def importar_modelos_alchemy():
-    import anonimizador.modulos.anonimizador.infraestructura.dto
+    import modelosIA.modulos.modelosIA.infraestructura.dto
 
 
 def comenzar_consumidor(app):
@@ -26,7 +26,7 @@ def comenzar_consumidor(app):
     import modelosIA.modulos.modelosIA.infraestructura.consumidores as modelosIA
 
     # Suscripción a eventos
-    threading.Thread(target=modelosIA.suscribirse_a_eventos).start()
+    threading.Thread(target=modelosIA.suscribirse_a_eventos, args=[app]).start()
 
     # Suscripción a comandos
     threading.Thread(target=modelosIA.suscribirse_a_comandos, args=[app]).start()
@@ -46,11 +46,11 @@ def create_app(configuracion={}):
     app.config["TESTING"] = configuracion.get("TESTING")
 
     # Inicializa la DB
-    from anonimizador.config.db import init_db
+    from modelosIA.config.db import init_db
 
     init_db(app)
 
-    from anonimizador.config.db import db
+    from modelosIA.config.db import db
 
     importar_modelos_alchemy()
     registrar_handlers()

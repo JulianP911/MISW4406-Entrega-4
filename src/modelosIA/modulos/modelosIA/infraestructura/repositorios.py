@@ -1,15 +1,15 @@
 from modelosIA.config.db import db
 from modelosIA.modulos.modelosIA.dominio.repositorios import (
-    RepositorioImagenMedica,
+    RepositorioDataframe,
 )
-from modelosIA.modulos.modelosIA.dominio.entidades import Dataframe, MapeadorDataframe
+from modelosIA.modulos.modelosIA.dominio.entidades import Dataframe
 from modelosIA.modulos.modelosIA.dominio.fabricas import FabricaDataframe
 from .dto import Dataframe as ImagenMedicaDTO
-from .mapeadores import MapeadorImagenMedica
+from .mapeadores import MapeadorDataframe
 from uuid import UUID
 
 
-class RepositorioDataframeSQLite(RepositorioImagenMedica):
+class RepositorioDataframeSQLite(RepositorioDataframe):
 
     def __init__(self):
         self._fabrica_dataframe: FabricaDataframe = FabricaDataframe()

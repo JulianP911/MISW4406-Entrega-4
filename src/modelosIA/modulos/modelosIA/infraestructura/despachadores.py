@@ -6,7 +6,7 @@ from modelosIA.modulos.modelosIA.infraestructura.schemas.v1.comandos import (
     ComandoGuardarDataframes,
     ComandoGuardarDataframesPayload,
 )
-from saludTech.seedwork.infraestructura import utils
+from modelosIA.seedwork.infraestructura import utils
 
 import datetime
 

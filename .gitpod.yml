@@ -4,7 +4,7 @@
 
 tasks:
   - name: Instalar Python
-    init: >
+    init: |
       pyenv install 3.10.7 -f &&
       pyenv local 3.10.7 &&
       gp sync-done bundle

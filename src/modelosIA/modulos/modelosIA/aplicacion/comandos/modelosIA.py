@@ -1,5 +1,5 @@
 from modelosIA.seedwork.aplicacion.comandos import Comando
-from modelosIA.modulos.modelosIA.aplicacion.dto import DataframeDTO
+from modelosIA.modulos.modelosIA.aplicacion.dto import ImagenAnonimizadaValidadDTO
 from .base import CrearDataframeBaseHandler
 from dataclasses import dataclass, field
 from modelosIA.seedwork.aplicacion.comandos import ejecutar_commando as comando
@@ -13,15 +13,15 @@ from modelosIA.modulos.modelosIA.infraestructura.repositorios import Repositorio
 class CrearDataframe(Comando):
     id: str
     url: str
-    dataframe: str
+    validate: bool
 
 class CrearDataframeHandler(CrearDataframeBaseHandler):
 
     def handle(self, comando: CrearDataframe):
-        dataframe_dto = DataframeDTO(
+        dataframe_dto = ImagenAnonimizadaValidadDTO(
                 id=comando.id
             ,   url=comando.url
-            ,   dataframe=comando.dataframe)
+            ,   validate=comando.validate)
 
         dataframe: Dataframe = self.fabrica_dataframe.crear_objeto(dataframe_dto, MapeadorDataframe())
         dataframe.crear_dataframe(dataframe)

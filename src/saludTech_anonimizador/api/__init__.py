@@ -29,7 +29,7 @@ def comenzar_consumidor(app):
     threading.Thread(target=anonimizador.suscribirse_a_eventos, args=[app]).start()
 
     # Suscripción a comandos
-    # threading.Thread(target=anonimizador.suscribirse_a_comandos, args=[app]).start()
+    threading.Thread(target=anonimizador.suscribirse_a_comandos, args=[app]).start()
 
 
 def create_app(configuracion={}):

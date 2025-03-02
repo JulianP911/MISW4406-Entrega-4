@@ -1,4 +1,4 @@
-from anonimizador.seedwork.dominio.excepciones import ExcepcionFabrica
+from modelosIA.seedwork.dominio.excepciones import ExcepcionFabrica
 
 
 class NoExisteImplementacionParaTipoFabricaExcepcion(ExcepcionFabrica):

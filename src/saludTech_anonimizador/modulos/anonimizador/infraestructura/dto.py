@@ -12,4 +12,5 @@ class ImagenMedica(db.Model):
         "id", db.Text(length=36), default=lambda: str(uuid.uuid4()), primary_key=True
     )
     url = db.Column(db.String(255), nullable=False)
+    validated = db.Column(db.Boolean, nullable=False, default=False)
 

@@ -5,4 +5,4 @@ from modelosIA.seedwork.aplicacion.dto import DTO
 class ImagenAnonimizadaValidadDTO(DTO):
     id: str = field(default=None)
     url: str = field(default=None)
-    valida: bool = field(default=None)
+    validate: bool = field(default=None)

@@ -1,13 +1,16 @@
 from modelosIA.seedwork.aplicacion.servicios import Servicio
 from modelosIA.modulos.modelosIA.dominio.entidades import Dataframe
 from modelosIA.modulos.modelosIA.infraestructura.repositorios import (
-    RepositorioDataframe,
+    MapeadorDataframe,
 )
 from modelosIA.modulos.modelosIA.dominio.fabricas import (
-    FabricaDateframe,
+    FabricaDataframe,
 )
 from modelosIA.modulos.modelosIA.infraestructura.fabricas import (
     FabricaRepositorio,
+)
+from modelosIA.modulos.modelosIA.infraestructura.repositorios import (
+    RepositorioDataframe,
 )
 
 from modelosIA.seedwork.infraestructura.uow import UnidadTrabajoPuerto as uow
@@ -21,7 +24,7 @@ class ServicioImagenMedica(Servicio):
 
     def __init__(self):
         self._fabrica_repositorio: FabricaRepositorio = FabricaRepositorio()
-        self._fabrica_dataframe: FabricaDateframe = FabricaDateframe()
+        self._fabrica_dataframe: FabricaDataframe = FabricaDataframe()
 
     @property
     def fabrica_repositorio(self):
