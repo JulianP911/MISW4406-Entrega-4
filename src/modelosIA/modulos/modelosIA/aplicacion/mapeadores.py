@@ -35,5 +35,5 @@ class MapeadorDataframe(RepMap):
         return Dataframe(
             id=dto.id,
             url=dto.url,
-            dataframe='aaaa'
+            dataframe='dataframe'
         )
