@@ -41,17 +41,9 @@ class CrearImagenMedicaHandler(CrearImagenMedicaBaseHandler):
             ),
         )
 
-        print("=============IMAGE MEDICAL DTO=============")
-        print(imagen_medica_dto)
-        print("=============IMAGE MEDICAL DTO=============")
-
         imagen_medica: ImagenMedica = self.fabrica_imagen_medica.crear_objeto(
             imagen_medica_dto, MapeadorImagenMedica()
         )
-
-        print("=============IMAGE MEDICAL=============")
-        print(imagen_medica)
-        print("=============IMAGE MEDICAL=============")
 
         imagen_medica.crear_imagen_medica(imagen_medica, comando.id_paciente)
 

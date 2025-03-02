@@ -42,9 +42,10 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedicaDTO(
             entidad.id,
             entidad.url,
-            entidad.metadata,
+            metadata=entidad.metadata,
             fecha_actualizacion=fecha_actualizacion,
             fecha_creacion=fecha_creacion,
+            bucket_location=entidad.bucket_location,
         )
 
     def dto_a_entidad(self, dto: ImagenMedicaDTO) -> ImagenMedica:

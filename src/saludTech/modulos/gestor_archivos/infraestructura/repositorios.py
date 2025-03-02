@@ -24,6 +24,7 @@ class RepositorioImageneMedicaSQLite(RepositorioImagenMedica):
 
     def obtener_todos(self) -> list[ImagenMedica]:
         imagenes_medicas = db.session.query(ImagenMedicaDTO).all()
+
         imagenes_medicas_dto = []
         for imagen_medica in imagenes_medicas:
             imagenes_medicas_dto.append(

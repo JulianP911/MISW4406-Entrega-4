@@ -29,10 +29,6 @@ def crear_imagen_medica():
 
         imagen_medica_dto = map_imagen_medica.externo_a_dto(imagen_medica_dict)
 
-        print("=============IMAGE MEDICAL DTO=============")
-        print(imagen_medica_dto)
-        print("=============IMAGE MEDICAL DICT=============")
-
         comando = CrearImagenMedica(
             fecha_creacion=imagen_medica_dto.fecha_creacion,
             fecha_actualizacion=imagen_medica_dto.fecha_actualizacion,

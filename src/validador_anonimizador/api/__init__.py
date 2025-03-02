@@ -60,12 +60,6 @@ def create_app(configuracion={}):
         if not app.config.get("TESTING"):
             comenzar_consumidor(app)
 
-    # Importa Blueprints
-    from . import gestor_historias_clinicas
-
-    # Registro de Blueprints
-    app.register_blueprint(gestor_historias_clinicas.bp)
-
     @app.route("/spec")
     def spec():
         swag = swagger(app)

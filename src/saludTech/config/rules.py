@@ -9,17 +9,8 @@ bucketLocation = {
 
 def get_bucket_location(domain):
     if domain is not None:
-        print("==========DOMAIN==========")
-        print(domain)
-        print("==========================")
         domain_name = domain.split("/")
-        print("==========DOMAIN_NAME==========")
-        print(domain_name)
-        print("==========================")
         end_domain = domain_name[0].split(".")[-1]
-        print("==========END_DOMAIN==========")
-        print(end_domain)
-        print("==========================")
     match end_domain:
         case "com":
             return bucketLocation["com"]
