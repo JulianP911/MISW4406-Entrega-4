@@ -44,7 +44,6 @@ La estructura de un microservicio esta basada de la siguiente forma:
       - dominio
       - infraestructura
       - presentacion
-  - Anonimizador
 - docs: Directorio con los archivos correspondiente de documentación.
 - .gitignore: Archivo con la definición de archivos que se deben ignorar en el repositorio GIT.
 - .gitpod.yml: Archivo que define las tareas/pasos a ejecutar para configurar su workspace en Gitpod.
