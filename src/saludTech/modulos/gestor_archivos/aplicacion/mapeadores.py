@@ -3,12 +3,13 @@ from saludTech.seedwork.dominio.repositorios import Mapeador as RepMap
 from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
 from saludTech.modulos.gestor_archivos.dominio.objeto_valor import Metadata
 from .dto import MetadataDTO, ImagenMedicaDTO
-
+import uuid
 
 class MapeadorImagenMedicaDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> ImagenMedicaDTO:
         imagen_medica_dto = ImagenMedicaDTO(
             url=externo["url"],
+            id=str(uuid.uuid4()),
             metadata=MetadataDTO(
                 tipo=externo["metadata"]["tipo"],
                 formato=externo["metadata"]["formato"],

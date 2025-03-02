@@ -2,12 +2,13 @@ from flask import redirect, render_template, request, session, url_for
 from flask import Response
 import json
 
-from saludTech.modulos.gestor_archivos.aplicacion.servicios import ServicioImagenMedica
+from saludTech.seedwork.aplicacion.comandos import ejecutar_commando
 import saludTech.seedwork.presentacion.api as api
 from saludTech.seedwork.dominio.excepciones import ExcepcionDominio
 from saludTech.modulos.gestor_archivos.aplicacion.mapeadores import (
     MapeadorImagenMedicaDTOJson,
 )
+from saludTech.modulos.gestor_archivos.aplicacion.comandos.crear_imagen_medica import CrearImagenMedica
 
 bp = api.crear_blueprint("gestor_archivos", "/gestor_archivos")
 
@@ -28,14 +29,18 @@ def crear_imagen_medica():
         print(imagen_medica_dto)
         print("===========map_imagen_medica===========")
 
-        servicio_imagen_medica = ServicioImagenMedica()
-        dto_final = servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto, imagen_medica_dict["id_paciente"])
+        comando = CrearImagenMedica(
+            fecha_creacion=imagen_medica_dto.fecha_creacion,
+            fecha_actualizacion=imagen_medica_dto.fecha_actualizacion,
+            id=imagen_medica_dto.id,
+            url=imagen_medica_dto.url,
+            metadata=imagen_medica_dto.metadata,
+            id_paciente=imagen_medica_dict["id_paciente"],
+        )
 
-        print("===========dto_final===========")
-        print(dto_final)
-        print("===========dto_final===========")
+        ejecutar_commando(comando)
 
-        return map_imagen_medica.dto_a_externo(dto_final)
+        return Response('{}', status=202, mimetype='application/json')
 
     except ExcepcionDominio as e:
         return Response(
