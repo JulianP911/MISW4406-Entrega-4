@@ -8,7 +8,9 @@ from saludTech.seedwork.dominio.excepciones import ExcepcionDominio
 from saludTech.modulos.gestor_archivos.aplicacion.mapeadores import (
     MapeadorImagenMedicaDTOJson,
 )
-from saludTech.modulos.gestor_archivos.aplicacion.comandos.crear_imagen_medica import CrearImagenMedica
+from saludTech.modulos.gestor_archivos.aplicacion.comandos.crear_imagen_medica import (
+    CrearImagenMedica,
+)
 
 bp = api.crear_blueprint("gestor_archivos", "/gestor_archivos")
 
@@ -17,17 +19,10 @@ bp = api.crear_blueprint("gestor_archivos", "/gestor_archivos")
 def crear_imagen_medica():
     try:
         imagen_medica_dict = request.json
-        print("===========dict===========")
-        print(imagen_medica_dict)
-        print("===========dict===========")
 
         map_imagen_medica = MapeadorImagenMedicaDTOJson()
 
         imagen_medica_dto = map_imagen_medica.externo_a_dto(imagen_medica_dict)
-
-        print("===========map_imagen_medica===========")
-        print(imagen_medica_dto)
-        print("===========map_imagen_medica===========")
 
         comando = CrearImagenMedica(
             fecha_creacion=imagen_medica_dto.fecha_creacion,
@@ -40,7 +35,7 @@ def crear_imagen_medica():
 
         ejecutar_commando(comando)
 
-        return Response('{}', status=202, mimetype='application/json')
+        return Response("{}", status=202, mimetype="application/json")
 
     except ExcepcionDominio as e:
         return Response(
