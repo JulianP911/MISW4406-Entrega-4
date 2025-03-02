@@ -7,7 +7,22 @@ En el siguiente enlace encontrará el video con los requerimientos solicitados e
 
 ## Entrega 4 - Estructura del proyecto
 
-La estructura del proyecto esta basada de la siguiente forma:
+El proyecto se encuentra estructurado en directorios, cada uno de los cuales albergará un microservicio específico de la arquitectura definida, conforme a la siguiente distribución:
+
+- saludTech
+- anonimizador
+- validador_anonimizador
+- modelosIA
+
+Asimismo, cada microservicio emplementa las siguientes capas arquitectónicas, con el propósito de adherirse a los principios del **Diseño Guiado por el Dominio (DDD)**:
+
+- API
+- Dominio
+- Infraestructura
+- Aplicación
+- Seedwork
+
+**Importante:** La inclusión de todas estas capas dependerá de los requerimientos específicos de cada microservicio, por lo que, en algunos casos, es posible que no se implementen en su totalidad para algunos microservicios.
 
 ## Entrega 5 - Ejecución del proyecto
 
