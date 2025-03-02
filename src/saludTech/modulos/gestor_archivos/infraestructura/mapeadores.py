@@ -16,6 +16,7 @@ class MapeadorImagenMedica(Mapeador):
         imagen_medica_dto.id = entidad.id
         imagen_medica_dto.url = entidad.url
         imagen_medica_dto.fecha_creacion = entidad.fecha_creacion
+        imagen_medica_dto.bucket_location = entidad.bucket_location
 
         metadata_dto = MetadataDTO()
         metadata_dto.tipo = entidad.metadata.tipo
@@ -37,4 +38,5 @@ class MapeadorImagenMedica(Mapeador):
             id=UUID(dto.id),
             url=dto.url,
             metadata=MetadataDTO(tipo="", formato=""),
+            bucket_location=dto.bucket_location,
         )

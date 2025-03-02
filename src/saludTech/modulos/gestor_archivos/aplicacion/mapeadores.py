@@ -4,13 +4,16 @@ from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
 from saludTech.modulos.gestor_archivos.dominio.objeto_valor import Metadata
 from .dto import MetadataDTO, ImagenMedicaDTO
 import uuid
+from saludTech.config.rules import get_bucket_location
 
 
 class MapeadorImagenMedicaDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> ImagenMedicaDTO:
+        bucket_location = get_bucket_location(externo["url"])
         imagen_medica_dto = ImagenMedicaDTO(
             url=externo["url"],
             id=str(uuid.uuid4()),
+            bucket_location=bucket_location,
             metadata=MetadataDTO(
                 tipo=externo["metadata"]["tipo"],
                 formato=externo["metadata"]["formato"],
@@ -48,6 +51,7 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedica(
             id=dto.id,
             url=dto.url,
+            bucket_location=dto.bucket_location,
             metadata=MetadataDTO(
                 dto.metadata.tipo,
                 dto.metadata.formato,

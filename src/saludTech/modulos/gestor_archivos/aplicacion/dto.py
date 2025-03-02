@@ -12,6 +12,7 @@ class MetadataDTO(DTO):
 class ImagenMedicaDTO(DTO):
     id: str = field(default=None)
     url: str = field(default=None)
+    bucket_location: str = field(default=None)
     metadata: MetadataDTO = field(default_factory=MetadataDTO)
     fecha_creacion: str = field(default_factory=str)
     fecha_actualizacion: str = field(default_factory=str)

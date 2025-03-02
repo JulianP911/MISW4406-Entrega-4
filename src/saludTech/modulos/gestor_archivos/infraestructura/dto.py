@@ -26,6 +26,7 @@ class ImagenMedica(db.Model):
         "id", db.Text(length=36), default=lambda: str(uuid.uuid4()), primary_key=True
     )
     url = db.Column(db.String(255), nullable=False)
+    bucket_location = db.Column(db.String(255), nullable=False)
     imagen_metadata = db.relationship(
         "ImagenMetadata", secondary=imagen_medica_metadata, back_populates="imagenes"
     )
