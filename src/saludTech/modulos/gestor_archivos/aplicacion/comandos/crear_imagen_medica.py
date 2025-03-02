@@ -58,7 +58,7 @@ class CrearImagenMedicaHandler(CrearImagenMedicaBaseHandler):
         repositorio = self.fabrica_repositorio.crear_objeto(
             RepositorioImagenMedica.__class__
         )
-        UnidadTrabajoPuerto.clean()
+
         UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, imagen_medica)
         UnidadTrabajoPuerto.savepoint()
         UnidadTrabajoPuerto.commit()
