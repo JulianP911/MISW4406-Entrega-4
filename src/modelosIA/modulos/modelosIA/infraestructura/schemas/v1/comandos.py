@@ -9,3 +9,10 @@ class ComandoGuardarDataframesPayload(ComandoIntegracion):
 
 class ComandoGuardarDataframes(ComandoIntegracion):
     data = ComandoGuardarDataframesPayload()
+
+class RevertirGeneracionDataframePayload(ComandoIntegracion):
+    id = String()
+    url = String()
+
+class ComandoRevertirGeneracionDataframe(ComandoIntegracion):
+    data = RevertirGeneracionDataframePayload()

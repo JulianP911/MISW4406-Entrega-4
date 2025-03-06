@@ -101,7 +101,7 @@ A continuación, se describen el comando para ejecutar el microservicio **valida
 A continuación, se describen el comando para ejecutar el microservicio **modelosIA**:
 
 ```bash
-   flask --app src/validador_anonimizador/api/ run -p 5003
+   flask --app src/modelosIA/api/ run -p 5003
 ```
 
 **Importante:** Esta aplicación corre en el puerto 5003.

@@ -7,6 +7,9 @@ import traceback
 from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.eventos import (
     EventoImagenCargada,
 )
+from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.comandos import (
+    ComandoRevertirCargaImagenMedica,
+)
 from saludTech.seedwork.infraestructura import utils
 
 
@@ -46,6 +49,27 @@ def suscribirse_a_comandos():
             mensaje = consumidor.receive()
             print(f"Comando recibido: {mensaje.value().data}")
 
+            consumidor.acknowledge(mensaje)
+    except:
+        logging.error("ERROR: Suscribiendose al tópico de comandos!")
+        traceback.print_exc()
+        if cliente:
+            cliente.close()
+
+def suscribirse_a_comandos_reversion():
+    cliente = None
+    try:
+        cliente = Client(f"pulsar://{utils.broker_host()}:6650")
+        consumidor = cliente.subscribe(
+            "comandos-revertir-anonimizacion-imagen",
+            subscription_name="saludTech-sub-comandos",
+            schema=AvroSchema(ComandoRevertirCargaImagenMedica),
+        )
+
+        while True:
+            mensaje = consumidor.receive()
+            print(f"Comando recibido: {mensaje.value().data}")
+            #TODO: Implementar la lógica de negocio para revertir la carga de la imagen
             consumidor.acknowledge(mensaje)
     except:
         logging.error("ERROR: Suscribiendose al tópico de comandos!")
