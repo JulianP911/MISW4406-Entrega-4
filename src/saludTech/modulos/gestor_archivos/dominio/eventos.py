@@ -8,3 +8,15 @@ class ArchivoPublicado(EventoDominio):
     id: str = None
     url: str = None
     id_paciente: str = None
+
+@dataclass
+class ArchivoPublicacionFallida(EventoDominio):
+    id: str = None
+    url: str = None
+    id_paciente: str = None
+
+@dataclass
+class ArchivoPublicacionRevertida(EventoDominio):
+    id: str = None
+    url: str = None
+    id_paciente: str = None

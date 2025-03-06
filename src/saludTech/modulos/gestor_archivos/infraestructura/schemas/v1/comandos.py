@@ -11,3 +11,12 @@ class ComandoAnonimizarImagenPayload(ComandoIntegracion):
 
 class ComandoAnonimizarImagen(ComandoIntegracion):
     data = ComandoAnonimizarImagenPayload()
+
+class RevertirCargaImagenMedicaPayload(ComandoIntegracion):
+    id = String()
+    id_paciente = String()
+    url = String()
+
+
+class ComandoRevertirCargaImagenMedica(ComandoIntegracion):
+    data = RevertirCargaImagenMedicaPayload()

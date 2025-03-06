@@ -30,3 +30,12 @@ class ComandoGuardarDataframesPayload(ComandoIntegracion):
 
 class ComandoGuardarDataframes(ComandoIntegracion):
     data = ComandoGuardarDataframesPayload()
+
+
+class RevertirValidacionAnonimizacionImagenMedicaPayload(ComandoIntegracion):
+    id = String()
+    url = String()
+
+
+class ComandoRevertirValidacionAnonimizacionImagenMedica(ComandoIntegracion):
+    data = RevertirValidacionAnonimizacionImagenMedicaPayload()

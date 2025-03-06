@@ -8,7 +8,7 @@ from modelosIA.modulos.modelosIA.infraestructura.schemas.v1.eventos import (
     EventoDataframeGuardado,
 )
 from modelosIA.modulos.modelosIA.infraestructura.schemas.v1.comandos import (
-    ComandoGuardarDataframes,
+    ComandoGuardarDataframes,ComandoRevertirGeneracionDataframe
 )
 from modelosIA.modulos.modelosIA.aplicacion.mapeadores import (
     MapeadorDataframeDTOJson,
@@ -61,6 +61,27 @@ def suscribirse_a_comandos(app):
 
                 servicio_imagen_medica = ServicioImagenMedica()
                 servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto)
+
+    except:
+        logging.error("ERROR: Suscribiendose al tópico de comandos!")
+        traceback.print_exc()
+        if cliente:
+            cliente.close()
+
+def suscribirse_a_comandos_reversion(app):
+    cliente = None
+    try:
+        cliente = Client(f"pulsar://{utils.broker_host()}:6650")
+        consumidor = cliente.subscribe(
+            "comandos-revertor-modelosIA",
+            subscription_name="modelosIA-sub-comandos",
+            schema=AvroSchema(ComandoRevertirGeneracionDataframe),
+        )
+
+        while True:
+            mensaje = consumidor.receive()
+            consumidor.acknowledge(mensaje)
+             #TODO: Implementar la lógica para revertir la generación de un dataframe
 
     except:
         logging.error("ERROR: Suscribiendose al tópico de comandos!")

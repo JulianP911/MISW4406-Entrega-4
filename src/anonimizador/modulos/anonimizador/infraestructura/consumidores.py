@@ -7,6 +7,7 @@ import json
 from anonimizador.modulos.anonimizador.infraestructura.schemas.v1.comandos import (
     ComandoAnonimizarImagen,
     ComandoValidarAnonimizado,
+    ComandoRevertirAnonimizacionImagenMedica
 )
 from anonimizador.seedwork.infraestructura import utils
 from anonimizador.modulos.anonimizador.dominio.entidades import ImagenMedica
@@ -60,6 +61,27 @@ def suscribirse_a_comandos(app):
                 )
 
                 consumidor.acknowledge(mensaje)
+    except Exception as e:
+        print(e)
+        logging.error("ERROR: Suscribiendose al tópico de comandos!")
+        traceback.print_exc()
+        if cliente:
+            cliente.close()
+
+def suscribirse_a_comandos_reversion(app):
+    cliente = None
+    try:
+        cliente = Client(f"pulsar://{utils.broker_host()}:6650")
+        consumidor = cliente.subscribe(
+            "comandos-revertir-anonimizar-imagen",
+            subscription_name="anonimizador-saludTech-sub-comandos",
+            schema=AvroSchema(ComandoRevertirAnonimizacionImagenMedica),
+        )
+        while True:
+            mensaje = consumidor.receive()
+            print(f"Comando recibido: {mensaje.value().data}")
+           #TODO: Implementar lógica de revertir anonimización
+            consumidor.acknowledge(mensaje)
     except Exception as e:
         print(e)
         logging.error("ERROR: Suscribiendose al tópico de comandos!")

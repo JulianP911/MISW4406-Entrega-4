@@ -30,6 +30,10 @@ def comenzar_consumidor():
 
     # Suscripción a comandos
     threading.Thread(target=gestor_archivos.suscribirse_a_comandos).start()
+     
+    # Suscripción a comandos
+    threading.Thread(target=gestor_archivos.suscribirse_a_comandos_reversion).start()
+
 
 
 def create_app(configuracion={}):
