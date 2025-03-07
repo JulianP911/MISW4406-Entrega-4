@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from anonimizador.seedwork.dominio.eventos import EventoDominio
+from saludTech.seedwork.dominio.eventos import (EventoDominio)
 
 class EventoAnonimizador(EventoDominio):
     ...

@@ -12,6 +12,7 @@ from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.comandos impor
 )
 from saludTech.seedwork.infraestructura import utils
 
+from saludTech.modulos.sagas.aplicacion.coordinadores.saga_procesamiento_imagenes import oir_mensaje
 
 def suscribirse_a_eventos():
     cliente = None
@@ -35,7 +36,7 @@ def suscribirse_a_eventos():
             cliente.close()
 
 
-def suscribirse_a_comandos():
+def suscribirse_a_comandos(app):
     cliente = None
     try:
         cliente = Client(f"pulsar://{utils.broker_host()}:6650")
@@ -46,10 +47,12 @@ def suscribirse_a_comandos():
         )
 
         while True:
+            
             mensaje = consumidor.receive()
-            print(f"Comando recibido: {mensaje.value().data}")
-
-            consumidor.acknowledge(mensaje)
+            with app.test_request_context():
+                print(f"Comando recibido: {mensaje.value().data}")
+                oir_mensaje(mensaje.value())
+                consumidor.acknowledge(mensaje)
     except:
         logging.error("ERROR: Suscribiendose al tópico de comandos!")
         traceback.print_exc()
@@ -68,7 +71,7 @@ def suscribirse_a_comandos_reversion():
 
         while True:
             mensaje = consumidor.receive()
-            print(f"Comando recibido: {mensaje.value().data}")
+            print(f"Comando recibido reversado: {mensaje.value().data}")
             #TODO: Implementar la lógica de negocio para revertir la carga de la imagen
             consumidor.acknowledge(mensaje)
     except:
