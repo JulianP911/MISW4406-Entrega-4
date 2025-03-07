@@ -7,6 +7,7 @@ reusables parte del seedwork del proyecto
 
 from abc import ABC, abstractmethod
 from uuid import UUID
+import uuid
 from .entidades import Entidad
 import datetime
 

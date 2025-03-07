@@ -48,16 +48,16 @@ class Inicio(Paso):
 
 @dataclass
 class Fin(Paso):
-    ...
+    index: int
 
 @dataclass
 class Transaccion(Paso):
-    
+    index: int
     comando: Comando
     evento: EventoDominio
     error: EventoDominio
     compensacion: Comando
-    exitosa: bool
+   # exitosa: bool
 
 
 class CoordinadorOrquestacion(CoordinadorSaga, ABC):
@@ -65,6 +65,8 @@ class CoordinadorOrquestacion(CoordinadorSaga, ABC):
     index: int
     
     def obtener_paso_dado_un_evento(self, evento: EventoDominio):
+        print('evento----------------------------')
+        print(evento)
         for i, paso in enumerate(self.pasos):
             if not isinstance(paso, Transaccion):
                 continue
