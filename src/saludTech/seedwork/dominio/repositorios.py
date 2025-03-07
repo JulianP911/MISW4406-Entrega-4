@@ -8,7 +8,7 @@ reusables parte del seedwork del proyecto
 from abc import ABC, abstractmethod
 from uuid import UUID
 from .entidades import Entidad
-
+import datetime
 
 class Repositorio(ABC):
     @abstractmethod
@@ -41,3 +41,13 @@ class Mapeador(ABC):
 
     @abstractmethod
     def dto_a_entidad(self, dto: any) -> Entidad: ...
+
+
+class SagaLogRepositorio(ABC):
+    @abstractmethod
+    def guardar_estado(self, id_saga: uuid.UUID, paso: int, estado: str, timestamp: datetime.datetime):
+        ...
+
+    @abstractmethod
+    def obtener_estado(self, id_saga: uuid.UUID):
+        ...
