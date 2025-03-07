@@ -14,6 +14,12 @@ from saludTech.modulos.sagas.dominio.eventos.validador_anonimizador import Archi
 
 
 class CoordinadorProcesamientoImagenes(CoordinadorOrquestacion):
+    def __init__(self):
+        super().__init__()
+        self.saga_log_repo = SagaLogSQLRepositorio()
+        self.id_correlacion = uuid.uuid4()
+        self.inicializar_pasos()
+
     def inicializar_pasos(self):
         self.pasos = [
             Inicio(index=0),
@@ -26,22 +32,29 @@ class CoordinadorProcesamientoImagenes(CoordinadorOrquestacion):
 
     def iniciar(self):
         self.persistir_en_saga_log(self.pasos[0])
-    
+
     def terminar(self):
         self.persistir_en_saga_log(self.pasos[-1])
 
     def persistir_en_saga_log(self, mensaje):
-        # TODO Persistir estado en DB
-        # Probablemente usted podría usar un repositorio para ello
-        ...
+        self.saga_log_repo.guardar_estado(
+            id_saga=self.id_correlacion,
+            paso=mensaje.index,
+            estado="Completado" if isinstance(paso, Fin) else "En Progreso"
+        )
 
     def construir_comando(self, evento: EventoDominio, tipo_comando: type):
-        # TODO Transforma un evento en la entrada de un comando
-        # Por ejemplo si el evento que llega es ReservaCreada y el tipo_comando es PagarReserva
-        # Debemos usar los atributos de ReservaCreada para crear el comando PagarReserva
-        ...
+        if tipo_comando == CargarImagenMedica and isinstance(evento, ArchivoPublicadoGestorArchivos):
+            return CargarImagenMedica(id_imagen=evento.id_imagen, ruta=evento.ruta)
+        elif tipo_comando == AnonimizarImagenMedica and isinstance(evento, ArchivoPublicadoGestorArchivos):
+            return AnonimizarImagenMedica(id_imagen=evento.id_imagen)
+        elif tipo_comando == ValidarAnonimizacionImagenMedica and isinstance(evento, ImagenAnonimizada):
+            return ValidarAnonimizacionImagenMedica(id_imagen=evento.id_imagen)
+        elif tipo_comando == GenerarDataframeImagenMedica and isinstance(evento, ImagenAnonimizadaValidada):
+            return GenerarDataframeImagenMedica(id_imagen=evento.id_imagen)
+        else:
+            raise ValueError(f"No se puede construir el comando {tipo_comando} a partir del evento {evento}")
 
-# TODO Agregue un Listener/Handler para que se puedan redireccionar eventos de dominio
 def oir_mensaje(mensaje):
     if isinstance(mensaje, EventoDominio):
         coordinador = CoordinadorProcesamientoImagenes()
