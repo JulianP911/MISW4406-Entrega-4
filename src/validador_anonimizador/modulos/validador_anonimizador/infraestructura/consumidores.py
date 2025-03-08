@@ -2,6 +2,7 @@ from pulsar import Client
 from pulsar.schema import AvroSchema
 import logging
 import traceback
+
 from validador_anonimizador.modulos.validador_anonimizador.aplicacion.servicios import (
     ServicioImagenMedica,
 )

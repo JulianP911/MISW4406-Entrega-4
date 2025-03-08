@@ -98,7 +98,7 @@ class CoordinadorOrquestacion(CoordinadorSaga, ABC):
         print('obtener_paso_dado_un_evento-------------------------')
         print(paso)
         print(index)
-        if self.es_ultima_transaccion(index+1) and not isinstance(evento, paso.error):
+        if self.es_ultima_transaccion(index) and not isinstance(evento, paso.error):
             self.terminar()
         elif self.es_primera_transaccion(index) and not isinstance(evento, paso.error):
             self.iniciar()
