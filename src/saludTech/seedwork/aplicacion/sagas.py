@@ -21,7 +21,7 @@ class CoordinadorSaga(ABC):
         print('publicar_comando-------------------------')
         print(evento)
         print(tipo_comando)
-        comando = self.construir_comando(evento, tipo_comando)
+        comando = self.construir_comando(evento, tipo_comando, evento)
         print('comando-------------------------')
         print(comando)
 

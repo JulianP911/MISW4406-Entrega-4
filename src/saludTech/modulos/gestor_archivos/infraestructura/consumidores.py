@@ -50,7 +50,7 @@ def suscribirse_a_comandos(app):
             
             mensaje = consumidor.receive()
             with app.test_request_context():
-                print(f"Comando recibido: {type(mensaje.value())}")
+                print(f"Comando recibido: {mensaje.value().data}")
                 oir_mensaje(mensaje.value())
                 consumidor.acknowledge(mensaje)
     except:

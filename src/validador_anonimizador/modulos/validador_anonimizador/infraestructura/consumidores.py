@@ -54,6 +54,7 @@ def suscribirse_a_comandos(app):
             print(f"Comando recibido: {mensaje.value().data}")
             consumidor.acknowledge(mensaje)
             with app.test_request_context():
+                print(f"Comando recibido: {mensaje.value().data}")
                 imagen_medica_dict = mensaje.value().data.__dict__
 
                 map_imagen_medica = MapeadorImagenMedicaDTOJson()
