@@ -27,8 +27,10 @@ class Despachador:
     def publicar_comando(self, comando, topico):
 
         payload = ComandoValidarAnonimizadoPayload(
-            id=comando.id, url=comando.url, token_paciente=comando.token_paciente
+            id=comando.id, url=comando.url, token_paciente=comando.id
         )
+        print(payload)
+        print("payload---------------------------------------------")
         comando_integracion = ComandoValidarAnonimizado(data=payload)
 
         self._publicar_mensaje(
