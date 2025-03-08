@@ -1,6 +1,8 @@
 from pulsar.schema import *
-from .utils import time_millis
+
 import uuid
+
+from saludTech.seedwork.infraestructura.utils import time_millis
 
 class CargarImagenMedicaPayload(Record):
     id=String()

@@ -18,8 +18,12 @@ class CoordinadorSaga(ABC):
         ...
 
     def publicar_comando(self,evento: EventoDominio, tipo_comando: type):
+        print('publicar_comando-------------------------')
+        print(evento)
+        print(tipo_comando)
         comando = self.construir_comando(evento, tipo_comando)
-        ejecutar_commando(comando)
+        print('comando-------------------------')
+        print(comando)
 
     @abstractmethod
     def inicializar_pasos(self):
@@ -74,15 +78,37 @@ class CoordinadorOrquestacion(CoordinadorSaga, ABC):
             if isinstance(evento, paso.evento) or isinstance(evento, paso.error):
                 return paso, i
         raise Exception("Evento no hace parte de la transacción")
-                
+    def es_primera_transaccion(self, index):
+        return index == 0
+
     def es_ultima_transaccion(self, index):
-        return len(self.pasos) - 1
+        print('ultima transaccion-----------------')
+        print(index)
+        print(len(self.pasos))
+        #return len(self.pasos) - 1
+        return index == len(self.pasos) - 1
 
     def procesar_evento(self, evento: EventoDominio):
+        print('evento-------------------------procesar---')
+        print(evento)
+        print(type(evento))
+        print('pasos-------------------------')
+        print(self.pasos)
         paso, index = self.obtener_paso_dado_un_evento(evento)
-        if self.es_ultima_transaccion(index) and not isinstance(evento, paso.error):
+        print('obtener_paso_dado_un_evento-------------------------')
+        print(paso)
+        print(index)
+        if self.es_ultima_transaccion(index+1) and not isinstance(evento, paso.error):
             self.terminar()
+        elif self.es_primera_transaccion(index) and not isinstance(evento, paso.error):
+            self.iniciar()
         elif isinstance(evento, paso.error):
+            print('pasos--------error-----------------')
+            print(paso)
+            print(paso.error)
             self.publicar_comando(evento, self.pasos[index-1].compensacion)
         elif isinstance(evento, paso.evento):
+            print('pasos--------evento-----------------')
+            print(paso)
+            print(paso.evento)
             self.publicar_comando(evento, self.pasos[index+1].compensacion)
