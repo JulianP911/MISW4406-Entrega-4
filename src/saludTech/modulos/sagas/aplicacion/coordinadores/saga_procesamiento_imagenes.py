@@ -35,7 +35,7 @@ class CoordinadorProcesamientoImagenes(CoordinadorOrquestacion):
         self.saga_log_repo = SagaLogSQLRepositorio()
         self.id_correlacion = uuid.uuid4()
         self.inicializar_pasos()
-        self.paso_actual = 0  # Track the current step
+        self.paso_actual = 1  
 
     def inicializar_pasos(self):
         self.pasos = [
@@ -47,8 +47,8 @@ class CoordinadorProcesamientoImagenes(CoordinadorOrquestacion):
         ]
 
     def iniciar(self,mensaje):
-        #self.persistir_en_saga_log(self.pasos[0])
-        self.procesar_paso(self.pasos[1],mensaje)  # Start the first step after initialization
+        self.persistir_en_saga_log(self.pasos[0])
+        self.procesar_paso(self.pasos[1],mensaje) 
 
     def terminar(self):
         self.persistir_en_saga_log(self.pasos[-1])
@@ -66,6 +66,7 @@ class CoordinadorProcesamientoImagenes(CoordinadorOrquestacion):
         """Process the current step and move to the next one."""
         if isinstance(paso, Transaccion):
             print(f"Procesando paso {paso.index}: {paso.comando.__name__}")
+            self.persistir_en_saga_log(self.pasos[paso.index])
             # Execute the command for the current step
             comando = self.construir_comando(paso.evento, paso.comando,mensaje)
             if comando:
@@ -124,7 +125,7 @@ def oir_mensaje(mensaje):
     try:
         coordinador = CoordinadorProcesamientoImagenes()
         if isinstance(mensaje, EventoImagenCargada):
-            coordinador.iniciar(mensaje)  # Start the saga when the first event is received
+            coordinador.iniciar(mensaje) 
         coordinador.procesar_evento(mensaje)
     except Exception as e:
         print(f"Error al procesar el mensaje: {e}")
