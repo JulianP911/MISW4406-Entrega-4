@@ -8,7 +8,7 @@ En el siguiente enlace encontrará el video con los requerimientos solicitados e
 ## Entrega 5 - Documentación prueba de concepto final
 
 En el siguiente enlace encontrará la documentación con los requerimientos solicitados en la entrega 5:
-- [Wiki - Entrega 5]()
+- [Wiki - Entrega 5](https://github.com/JulianP911/MISW4406-Entrega-4-y-5/wiki)
 
 ## Entrega 5 - Estructura del proyecto
 
@@ -125,4 +125,5 @@ A continuación, se describen el comando para ejecutar el **bff** sobre la carpe
 ### Enlace a la documentación de la colleción en POSTMAN 
 
 En el siguiente enlace encontrará la documentación de la colleción en POSTMAN:
-- [Documentación - Postman]()
+
+- [Documentación - Postman](https://documenter.getpostman.com/view/9051835/2sAYdoG86W)
