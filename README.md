@@ -1,16 +1,16 @@
-# Entrega 4 - Prueba de concepto (experimentación)
+# Entrega 4 - Prueba de concepto final
 
-## Entrega 4 - Video prueba de concepto (experimentación)
+## Entrega 4 - Video prueba de concepto final
 
-En el siguiente enlace encontrará el video con los requerimientos solicitados en la entrega 4:
-- [Video - Entrega 4](https://uniandes-my.sharepoint.com/:v:/g/personal/j_padilla_uniandes_edu_co/EdqHcTS0HLNCtHF5RB4vS3EBjKi7k2l5erDQD36b-UxX_A?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=cGenz8)
+En el siguiente enlace encontrará el video con los requerimientos solicitados en la entrega 5:
+- [Video - Entrega 5]()
 
-## Entrega 4 - Documentación prueba de concepto (experimentación)
+## Entrega 5 - Documentación prueba de concepto final
 
-En el siguiente enlace encontrará la documentación con los requerimientos solicitados en la entrega 4:
-- [Wiki - Entrega 4](https://github.com/JulianP911/MISW4406-Entrega-4/wiki)
+En el siguiente enlace encontrará la documentación con los requerimientos solicitados en la entrega 5:
+- [Wiki - Entrega 5]()
 
-## Entrega 4 - Estructura del proyecto
+## Entrega 5 - Estructura del proyecto
 
 El proyecto se encuentra estructurado en directorios, cada uno de los cuales albergará un microservicio específico de la arquitectura definida, conforme a la siguiente distribución:
 
@@ -19,7 +19,9 @@ El proyecto se encuentra estructurado en directorios, cada uno de los cuales alb
 - validador_anonimizador
 - modelosIA
 
-Asimismo, cada microservicio emplementa las siguientes capas arquitectónicas, con el propósito de adherirse a los principios del **Diseño Guiado por el Dominio (DDD)**:
+**Importante:** Dento del directorio de saludTech en la carpeta modulos se tiene la definición de **Sagas** para el manejo distribuido de transacciones empleando **Orquestación**.
+
+Asimismo, cada microservicio implementa las siguientes capas arquitectónicas, con el propósito de adherirse a los principios del **Diseño Guiado por el Dominio (DDD)**:
 
 - Dominio
 - Infraestructura
@@ -27,6 +29,10 @@ Asimismo, cada microservicio emplementa las siguientes capas arquitectónicas, c
 - Seedwork
 
 **Importante:** La inclusión de todas estas capas dependerá de los requerimientos específicos de cada microservicio, por lo que, en algunos casos, es posible que no se implementen en su totalidad para algunos microservicios.
+
+De igual forma, se tiene un directorio especifico donde se definio el Backend to Frontend (bff) a nivel de raíz del proyecto:
+
+- bff
 
 La estructura de un microservicio esta basada de la siguiente forma:
 
@@ -106,14 +112,17 @@ A continuación, se describen el comando para ejecutar el microservicio **modelo
 
 **Importante:** Esta aplicación corre en el puerto 5003.
 
-Abrir postman y realizar una péticion de tipo POST a la url `localhost:5000/imagen_medica` y mandar el objeto para la ejecución correcta.
-   ```bash
-   {
-        "url": "www.testq.com",
-        "id_paciente": "{{$guid}}",
-        "metadata": {
-            "tipo": "test",
-            "formato": "test"
-        }
-    }
-   ```
+### Bff
+
+A continuación, se describen el comando para ejecutar el **bff** sobre la carpeta src:
+
+```bash
+   uvicorn bff.main:app --host localhost --port 8003 --reload
+```
+
+**Importante:** Esta aplicación corre en el puerto 8003.
+
+### Enlace a la documentación de la colleción en POSTMAN 
+
+En el siguiente enlace encontrará la documentación de la colleción en POSTMAN:
+- [Documentación - Postman]()
