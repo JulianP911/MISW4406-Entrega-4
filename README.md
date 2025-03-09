@@ -1,6 +1,6 @@
-# Entrega 4 - Prueba de concepto final
+# Entrega 5 - Prueba de concepto final
 
-## Entrega 4 - Video prueba de concepto final
+## Entrega 5 - Video prueba de concepto final
 
 En el siguiente enlace encontrará el video con los requerimientos solicitados en la entrega 5:
 - [Video - Entrega 5]()
