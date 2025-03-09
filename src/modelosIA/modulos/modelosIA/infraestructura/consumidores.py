@@ -53,6 +53,8 @@ def suscribirse_a_comandos(app):
         while True:
             mensaje = consumidor.receive()
             consumidor.acknowledge(mensaje)
+            print(f"Comando recibido: {mensaje.value().data}")
+
             with app.test_request_context():
                 imagen_medica_dict = mensaje.value().data.__dict__
 
@@ -61,6 +63,8 @@ def suscribirse_a_comandos(app):
 
                 servicio_imagen_medica = ServicioImagenMedica()
                 servicio_imagen_medica.crear_imagen_medica(imagen_medica_dto)
+                print(f"Imagen procesada IA")
+            
 
     except:
         logging.error("ERROR: Suscribiendose al tópico de comandos!")

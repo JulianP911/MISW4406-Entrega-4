@@ -97,9 +97,7 @@ class CoordinadorProcesamientoImagenes(CoordinadorOrquestacion):
             payload=ValidarAnonimizacionImagenMedicaPayload(id=mensaje.data.id, url=mensaje.data.url , token_paciente=mensaje.data.id_paciente)
             print(f"Payload validar: {payload}")
             return ValidarAnonimizacionImagenMedica(data=payload)
-        else:
-            raise ValueError(f"No se puede construir el comando {tipo_comando.__name__} a partir del evento {type(evento).__name__}")
-
+       
     def ejecutar_comando(self, comando):
         """Execute the command and handle the result."""
         print(f"Ejecutando comando: {comando}")
