@@ -13,7 +13,11 @@ router = APIRouter(
 
 @router.post("/", status_code=202)
 async def crear_imagen_medica():
-    payload = dict(id=str(uuid()), id_paciente=str(uuid()), url="url")
+    payload = dict(
+        url="url",
+        metadata=dict(tipo="tipo", formato="formato"),
+        id_paciente=str(uuid()),
+    )
     comando = dict(
         id=str(uuid()),
         time=utils.time_millis(),
@@ -29,8 +33,8 @@ async def crear_imagen_medica():
     asyncio.get_event_loop().create_task(
         despachador.publicador_mensaje(
             comando,
-            "comandos-anonimizar-imagen",
-            "public/default/eventos-anonimizar-imagen",
+            "comandos-crear-imagen",
+            "public/default/comandos-crear-imagen",
         )
     )
 
@@ -42,7 +46,6 @@ async def dar_imagenes_medicas():
     imagenes_medicas_json = requests.get(
         f"http://localhost:5000/gestor_archivos/imagen_medica"
     ).json()
-    print(imagenes_medicas_json)
     imagenes_medicas = []
 
     for imagen in imagenes_medicas_json:

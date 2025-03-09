@@ -27,7 +27,9 @@ class Despachador:
         cliente.close()
 
     def publicar_comando(self, comando, topico):
-        payload = ComandoGuardarDataframesPayload(id=comando.id, url=comando.url)
+        payload = ComandoGuardarDataframesPayload(
+            id=comando.id_paciente, url=comando.url
+        )
         comando_integracion = ComandoGuardarDataframes(data=payload)
 
         self._publicar_mensaje(

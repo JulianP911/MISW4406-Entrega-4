@@ -24,7 +24,9 @@ class Despachador:
         cliente.close()
 
     def publicar_comando(self, comando, topico):
-        payload = ComandoAnonimizarImagenPayload(id=comando.id, url=comando.url)
+        payload = ComandoAnonimizarImagenPayload(
+            id=comando.id_paciente, url=comando.url
+        )
         comando_integracion = ComandoAnonimizarImagen(data=payload)
 
         self._publicar_mensaje(

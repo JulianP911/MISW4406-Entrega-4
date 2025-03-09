@@ -1,18 +1,22 @@
 from dataclasses import dataclass
-from saludTech.seedwork.dominio.eventos import (EventoDominio)
+from saludTech.seedwork.dominio.eventos import EventoDominio
 
-class EventoValidadorAnonimizador(EventoDominio):
-    ...
+
+class EventoValidadorAnonimizador(EventoDominio): ...
+
 
 @dataclass
 class ArchivoPublicado(EventoValidadorAnonimizador):
     id: str = None
     url: str = None
-    
+    id_paciente: str = None
+
+
 @dataclass
 class ArchivoPublicacionFallida(EventoValidadorAnonimizador):
     id: str = None
     url: str = None
+
 
 @dataclass
 class ArchivoPublicacionRevertida(EventoValidadorAnonimizador):
