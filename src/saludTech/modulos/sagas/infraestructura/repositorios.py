@@ -15,6 +15,7 @@ class SagaLogSQLRepositorio(SagaLogRepositorio):
     def guardar_estado(self, id_saga: uuid.UUID, paso: int, estado: str, timestamp: datetime.datetime = None):
        
         saga_log = SagaLog(
+            id=str(uuid.uuid4()),
             id_saga=str(id_saga),
             paso=paso,
             estado=estado,
