@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
 import requests
 from dataclasses import dataclass
 from uuid import uuid4 as uuid
@@ -6,17 +7,29 @@ from bff.despachadores import Despachador
 from bff import utils
 import asyncio
 
+
+class MetadataDTO(BaseModel):
+    tipo: str
+    formato: str
+
+
+class ImagenMedicaDTO(BaseModel):
+    url: str
+    metadata: MetadataDTO
+    id_paciente: str
+
+
 router = APIRouter(
     prefix="/imagen_medica",
 )
 
 
 @router.post("/", status_code=202)
-async def crear_imagen_medica():
+async def crear_imagen_medica(imagen_medica: ImagenMedicaDTO):
     payload = dict(
-        url="url",
-        metadata=dict(tipo="tipo", formato="formato"),
-        id_paciente=str(uuid()),
+        url=imagen_medica.url,
+        metadata=imagen_medica.metadata.__dict__,
+        id_paciente=imagen_medica.id_paciente,
     )
     comando = dict(
         id=str(uuid()),
