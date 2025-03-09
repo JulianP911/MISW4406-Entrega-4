@@ -35,7 +35,14 @@ class UnidadTrabajo(ABC):
                 if isinstance(arg, AgregacionRaiz):
                     return arg.eventos
         return list()
-
+    
+    def _obtener_args(self, batches=None):
+        batches = self.batches if batches is None else batches
+        for batch in batches:
+            for arg in batch.args:
+                return arg
+        return list()
+    
     @abstractmethod
     def _limpiar_batches(self):
         raise NotImplementedError
@@ -65,6 +72,7 @@ class UnidadTrabajo(ABC):
 
     def registrar_batch(self, operacion, *args, lock=Lock.PESIMISTA, **kwargs):
         batch = Batch(operacion, lock, *args, **kwargs)
+        print(f"Registrando batch: {batch.args}")
         self.batches.append(batch)
         print(f"Batch registrado: {batch.operacion.__name__}")
         print(len(self.batches))
@@ -75,11 +83,12 @@ class UnidadTrabajo(ABC):
             dispatcher.send(signal=f"{type(evento).__name__}Dominio", evento=evento)
 
     def _publicar_eventos_post_commit(self):
-        for evento in self._obtener_eventos():
-            print(f"Publicando evento: {type(evento).__name__}")
-            dispatcher.send(
-                signal=f"{type(evento).__name__}Integracion", comando=evento
-            )
+       # for evento in self._obtener_eventos():
+        evento =self._obtener_args()
+        print(f"Publicando evento: {evento}")
+        dispatcher.send(
+            signal=f"{type(evento).__name__}Integracion", comando=evento
+        )
 
 
 def is_flask():
